@@ -141,8 +141,6 @@ p:last-child { margin-bottom: 0; }
   color: var(--muted);
 }
 
-.muted { color: var(--muted); }
-
 /* ---------------------------------------------------------- HUD chrome --
    Corner ticks only. The previous version also drew two full-height rules down
    the page, which read as decorative grid lines rather than structure. */

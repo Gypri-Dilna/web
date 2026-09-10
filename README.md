@@ -87,15 +87,27 @@ repo's `bolt glyph chain.svg`, white background removed) used as a section divid
 
 ## Before you go live
 
-1. **Contact e-mail.** `dilna@gypri.cz`, from page 8 of the brand guide. Confirm it is the
-   address you want public.
-2. **Opening hours.** The site deliberately states none, because there is no source for
-   any. If you have real hours, add them to `kontakt.html`.
-3. **Access System.** The link was removed because `sshdilna.playit.plus:1226` stopped
-   resolving (DNS failure), and a dead control on five pages is worse than no control.
-   When the tunnel is running again, add it back in two places per page: a nav item in
-   `<nav class="nav">` and a link in `<nav class="footer-nav">`, plus a row in
-   `kontakt.html`.
+1. **Contact details.** `dilna@gypri.cz` and `+420 605 089 399`, both from the kroužek
+   flyer. Confirm the phone number is the one you want public.
+2. **Kroužek schedule.** The site says the club meets every 2nd to 3rd Wednesday, at least
+   once a month. That comes from the flyer, which is a dated document, so check it still
+   matches the current school year.
+3. **Door number.** The flyer says door no. 64, next to the art room. Confirm this is
+   still correct.
 4. **Photo credits.** All photos came from the old WordPress site and the
    `gypridilna-app-2.0` repo, so they are the workshop's own images. They were verified as
    valid files but never reviewed by eye.
+
+## Sources
+
+Copy and facts on this site come from, in order of authority:
+
+1. `Dilna Logo - brand guide.pdf` (Návod Brand 2025): palette, typeface, logo concept, and
+   the contact e-mail on page 8.
+2. `Dílna kroužek leták A4.pdf` (the kroužek flyer): phone number, meeting schedule, door
+   number, and the wording of the mission lines.
+3. The old WordPress site at gypridilna.cz: equipment counts, project descriptions,
+   sponsor list, address.
+4. The `gypridilna-app-2.0` repo: logo glyphs and workshop photographs.
+
+If a fact is not in one of those, it is not on the site. That is deliberate.
