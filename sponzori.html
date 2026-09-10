@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sponzoři — Gypri Dílna</title>
+<meta name="description" content="Děkujeme sponzorům, díky kterým vznikla moderní dílna na Masarykově gymnáziu v Příboře.">
+<meta property="og:title" content="Sponzoři — Gypri Dílna">
+<meta property="og:description" content="Díky, že jste součástí tohoto projektu.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<div class="glow" aria-hidden="true"></div>
+<canvas id="ambience" aria-hidden="true"></canvas>
+<div class="noise" aria-hidden="true"></div>
+
+<div class="hud-frame" aria-hidden="true">
+  <span class="hud-tick tl"></span><span class="hud-tick tr"></span>
+  <span class="hud-tick bl"></span><span class="hud-tick br"></span>
+</div>
+
+<header class="topbar">
+  <a class="brand" href="index.html">
+    <img class="brand-mark" src="assets/logo-svetle.svg" alt="" width="34" height="34">
+    <span class="brand-word">gypri dílna</span>
+  </a>
+  <nav class="nav" id="nav" aria-label="Hlavní navigace">
+    <a href="index.html">Domů</a>
+    <a href="nase-prace.html">Naše práce</a>
+    <a href="cansat.html">CanSat</a>
+    <a href="sponzori.html" aria-current="page">Sponzoři</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a class="nav-access" href="http://sshdilna.playit.plus:1226/" target="_blank" rel="noopener">Access System &#8599;</a>
+  </nav>
+  <a class="btn btn--access" href="http://sshdilna.playit.plus:1226/" target="_blank" rel="noopener">Access System</a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Otevřít menu"><span></span></button>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">[ Díky, že jste součástí projektu ]</span>
+      <h1 class="page-title">Spon<em>zoři</em></h1>
+      <p class="lead">
+        Děkujeme všem našim sponzorům za podporu při vytváření moderní dílny na Masarykově
+        gymnáziu v Příboře. Vaše příspěvky nám umožnily poskytnout studentům lepší prostředí
+        pro učení. Velký dík patří vám za vaši štědrost a za to, že jste součástí tohoto projektu.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">[ 01 ]</span>
+        <h2>Naši partneři</h2>
+      </div>
+      <div class="sponsor-grid">
+        <a class="sponsor reveal" href="https://alliancelaundry.com/?lang=cs" target="_blank" rel="noopener">
+          <img src="photo/sponzor-aliance-laundry.png" alt="Aliance Laundry" loading="lazy" decoding="async">
+        </a>
+        <a class="sponsor reveal" href="https://www.brose.com/cz-cz/brose-in-cz/" target="_blank" rel="noopener">
+          <img src="photo/sponzor-brose.png" alt="Brose" loading="lazy" decoding="async">
+        </a>
+        <a class="sponsor reveal" href="https://www.skarab.cz/en/" target="_blank" rel="noopener">
+          <img src="photo/sponzor-skarab.png" alt="Skarab" loading="lazy" decoding="async">
+        </a>
+        <a class="sponsor reveal" href="https://www.ri-okna.cz" target="_blank" rel="noopener">
+          <img src="photo/sponzor-ri-okna.png" alt="RI okna" loading="lazy" decoding="async">
+        </a>
+        <a class="sponsor reveal" href="https://www.laskakit.cz" target="_blank" rel="noopener">
+          <img src="photo/sponzor-laskakit.png" alt="LaskaKit" loading="lazy" decoding="async">
+        </a>
+        <a class="sponsor reveal" href="https://cre8.cz/cs" target="_blank" rel="noopener">
+          <img src="photo/sponzor-cre8.webp" alt="Cre8" loading="lazy" decoding="async">
+        </a>
+        <a class="sponsor reveal" href="http://www.gypri.cz" target="_blank" rel="noopener">
+          <img src="photo/sponzor-gypri.webp" alt="Gypri" loading="lazy" decoding="async">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <div class="section-head" style="margin-bottom:1.5rem">
+            <span class="idx">[ 02 ]</span>
+            <h2>Chcete nás podpořit?</h2>
+          </div>
+          <p class="lead">
+            Dílna vzniká díky podpoře firem i jednotlivců. Každý příspěvek se promění
+            v materiál, nářadí nebo vybavení, které studenti používají při skutečné práci.
+          </p>
+          <p>
+            Ozvěte se nám a domluvíme se, jakou formou nám můžete pomoci — ať už materiálem,
+            technikou, nebo finančním příspěvkem.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="mailto:dilna@gypri.cz">dilna@gypri.cz</a>
+            <a class="btn" href="kontakt.html">Kontakt</a>
+          </div>
+        </div>
+        <div class="grid grid--2 reveal">
+          <div class="data data--accent">
+            <div class="data-label">3D tiskárny</div>
+            <div class="data-val">07</div>
+          </div>
+          <div class="data">
+            <div class="data-label">Notebooky</div>
+            <div class="data-val">07</div>
+          </div>
+          <div class="data">
+            <div class="data-label">Stolní PC</div>
+            <div class="data-val">01</div>
+          </div>
+          <div class="data">
+            <div class="data-label">Sponzoři</div>
+            <div class="data-val">07</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/logo-svetle.svg" alt="Gypri dílna" width="40" height="40" style="margin-bottom:1rem">
+        <p class="muted" style="font-size:.9rem;max-width:36ch">
+          Pěstujeme inženýry zítřka. Dílna, kde se teorie mění v praxi.
+        </p>
+      </div>
+      <div>
+        <h4>Odkazy</h4>
+        <div class="footer-links">
+          <a href="index.html">Domů</a>
+          <a href="nase-prace.html">Naše práce</a>
+          <a href="cansat.html">CanSat</a>
+          <a href="sponzori.html">Sponzoři</a>
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <div class="footer-links">
+          <a href="mailto:dilna@gypri.cz">dilna@gypri.cz</a>
+          <a href="https://instagram.com/gymnaziumpribor" target="_blank" rel="noopener">@gymnaziumpribor &#8599;</a>
+          <a href="http://sshdilna.playit.plus:1226/" target="_blank" rel="noopener">Access System &#8599;</a>
+          <span class="muted" style="font-size:.88rem">Jičínská 528, 742 58 Příbor</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="hud-label">&copy; 2026 Gypri dílna &middot; Masarykovo gymnázium Příbor</span>
+      <span class="hud-label">[ Vyrobeno v dílně ]</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

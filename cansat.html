@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CanSat — Gypri Dílna</title>
+<meta name="description" content="CanSat — mezinárodní soutěž ESA, ve které studenti staví satelit velikosti plechovky. Naše dílna je zázemím týmu IKAROS.">
+<meta property="og:title" content="CanSat — Gypri Dílna">
+<meta property="og:description" content="Satelit v plechovce. Naše dílna je zázemím týmu IKAROS.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<div class="glow" aria-hidden="true"></div>
+<canvas id="ambience" aria-hidden="true"></canvas>
+<div class="noise" aria-hidden="true"></div>
+
+<div class="hud-frame" aria-hidden="true">
+  <span class="hud-tick tl"></span><span class="hud-tick tr"></span>
+  <span class="hud-tick bl"></span><span class="hud-tick br"></span>
+</div>
+
+<header class="topbar">
+  <a class="brand" href="index.html">
+    <img class="brand-mark" src="assets/logo-svetle.svg" alt="" width="34" height="34">
+    <span class="brand-word">gypri dílna</span>
+  </a>
+  <nav class="nav" id="nav" aria-label="Hlavní navigace">
+    <a href="index.html">Domů</a>
+    <a href="nase-prace.html">Naše práce</a>
+    <a href="cansat.html" aria-current="page">CanSat</a>
+    <a href="sponzori.html">Sponzoři</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a class="nav-access" href="http://sshdilna.playit.plus:1226/" target="_blank" rel="noopener">Access System &#8599;</a>
+  </nav>
+  <a class="btn btn--access" href="http://sshdilna.playit.plus:1226/" target="_blank" rel="noopener">Access System</a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Otevřít menu"><span></span></button>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">[ Soutěž ESA &middot; Satelit v plechovce ]</span>
+      <h1 class="page-title">Can<em>Sat</em></h1>
+      <p class="lead">
+        Mezinárodní soutěž, ve které studenti navrhnou, postaví a vypustí malý satelit
+        o velikosti běžné plechovky od nápoje. Naše dílna je technickým zázemím týmu,
+        který se jí účastní.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="https://ikaroscansat.cz/" target="_blank" rel="noopener">Náš tým IKAROS &#8599;</a>
+        <a class="btn" href="nase-prace.html">Co pro CanSat vyrábíme</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">[ 01 ]</span>
+        <h2>Co je CanSat</h2>
+      </div>
+      <div class="split">
+        <div class="reveal">
+          <p class="lead">
+            CanSat, zkratka pro &bdquo;Can Satellite&ldquo;, je soutěž organizovaná
+            Evropskou kosmickou agenturou (ESA) a partnerskými institucemi.
+          </p>
+          <p>
+            Úkolem soutěžících je navrhnout, postavit a vypustit malý satelit, který velikostně
+            odpovídá běžné plechovce od nápoje. Tento malý satelit je vybaven všemi klíčovými
+            systémy, které mají reálné satelity — od napájecích a komunikačních systémů
+            až po vědecké přístroje pro sběr dat.
+          </p>
+        </div>
+        <figure class="reveal" style="margin:0">
+          <div class="media media--tall">
+            <img src="photo/cansat-03.webp" alt="Sestavování CanSatu" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="media-caption">CanSat &middot; sestavování modulu</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">[ 02 ]</span>
+        <h2>Jak soutěž probíhá</h2>
+      </div>
+      <div class="grid grid--3">
+        <article class="panel panel--feature reveal">
+          <h3>Kvalifikace</h3>
+          <p>
+            Týmy nejprve odevzdají návrh mise a musí se kvalifikovat. Hodnotí se technické
+            řešení, plán mise i schopnost týmu projekt dotáhnout.
+          </p>
+        </article>
+        <article class="panel panel--feature reveal">
+          <h3>Stavba a testy</h3>
+          <p>
+            Následuje návrh, výroba a testování modulu. Právě tady se naplno uplatní dílna —
+            3D tisk, elektronika a prototypování.
+          </p>
+        </article>
+        <article class="panel panel--feature reveal">
+          <h3>Finále a prezentace</h3>
+          <p>
+            Nejlepší týmy postupují do celorepublikového finále, kde svůj projekt prezentují
+            odborné porotě a soutěží o hlavní ceny.
+          </p>
+        </article>
+      </div>
+
+      <div class="divider-glyphs" aria-hidden="true"></div>
+
+      <div class="split">
+        <figure class="reveal" style="margin:0">
+          <div class="media">
+            <img src="photo/cansat-02.webp" alt="Tým při práci na CanSatu" loading="lazy" decoding="async">
+          </div>
+        </figure>
+        <figure class="reveal" style="margin:0">
+          <div class="media">
+            <img src="photo/cansat-01.webp" alt="CanSat modul" loading="lazy" decoding="async">
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">[ 03 ]</span>
+        <h2>Proč se zapojit</h2>
+      </div>
+      <div class="grid grid--2">
+        <div class="reveal">
+          <p class="lead">
+            CanSat není jen o technice a vědě. Je to příležitost získat praktické zkušenosti,
+            které jsou nezbytné pro kariéru v oblasti inženýrství, vědy a technologie.
+          </p>
+          <p>
+            Účastníci se učí týmové práci, řešení problémů a inovativnímu myšlení. Každý tým musí
+            nejen navrhnout a postavit svůj CanSat, ale také naplánovat misi, analyzovat data
+            a prezentovat výsledky odborné porotě.
+          </p>
+        </div>
+        <div class="reveal">
+          <p class="lead">
+            Pro mnohé účastníky se CanSat stává odrazovým můstkem k dalším úspěchům.
+          </p>
+          <p>
+            Mnozí pokračují ve studiích v oborech inženýrství, informatiky nebo fyziky a často
+            získávají prestižní stáže a pracovní příležitosti. Soutěž je tak nejen skvělou
+            zábavou, ale také investicí do budoucnosti.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="idx">[ 04 ]</span>
+        <h2>Náš tým IKAROS</h2>
+      </div>
+      <p class="lead reveal" style="margin-bottom:2.5rem">
+        Díky špičkovému vybavení dílny — včetně 3D tiskáren, CNC strojů a pokročilých nástrojů —
+        se zapojujeme do náročných technických soutěží. Sledujte cestu týmu IKAROS soutěží
+        CanSat 2025/2026.
+      </p>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-date">31. 01. 2026</div>
+          <div class="timeline-event">Fáze I<br>One-pager</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">14. 04. 2026</div>
+          <div class="timeline-event">Fáze II<br>Semifinále</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">07.&ndash;08. 05. 2026</div>
+          <div class="timeline-event">Fáze III<br>Finále</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">17.&ndash;19. 06. 2026</div>
+          <div class="timeline-event">Fáze IV<br>ESA-ESTEC</div>
+        </div>
+      </div>
+
+      <div class="callout reveal" style="margin-top:3rem">
+        <span class="eyebrow">[ Ikaros CanSat ]</span>
+        <h2 style="margin-bottom:1rem">Ikaros tentokrát nespadne. Přistane.</h2>
+        <p class="lead" style="margin-bottom:1.75rem">
+          Živá telemetrie, simulace letu a celý tým na jednom místě.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="https://ikaroscansat.cz/" target="_blank" rel="noopener">ikaroscansat.cz &#8599;</a>
+          <a class="btn" href="https://gs.ikaroscansat.cz/" target="_blank" rel="noopener">Pozemní stanice &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/logo-svetle.svg" alt="Gypri dílna" width="40" height="40" style="margin-bottom:1rem">
+        <p class="muted" style="font-size:.9rem;max-width:36ch">
+          Pěstujeme inženýry zítřka. Dílna, kde se teorie mění v praxi.
+        </p>
+      </div>
+      <div>
+        <h4>Odkazy</h4>
+        <div class="footer-links">
+          <a href="index.html">Domů</a>
+          <a href="nase-prace.html">Naše práce</a>
+          <a href="cansat.html">CanSat</a>
+          <a href="sponzori.html">Sponzoři</a>
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <div class="footer-links">
+          <a href="mailto:dilna@gypri.cz">dilna@gypri.cz</a>
+          <a href="https://instagram.com/gymnaziumpribor" target="_blank" rel="noopener">@gymnaziumpribor &#8599;</a>
+          <a href="http://sshdilna.playit.plus:1226/" target="_blank" rel="noopener">Access System &#8599;</a>
+          <span class="muted" style="font-size:.88rem">Jičínská 528, 742 58 Příbor</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="hud-label">&copy; 2026 Gypri dílna &middot; Masarykovo gymnázium Příbor</span>
+      <span class="hud-label">[ Vyrobeno v dílně ]</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

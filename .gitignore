@@ -1,0 +1,15 @@
+# Brand source material — the 17 MB guide already lives in
+# Gypri-Dilna/gypridilna-app-2.0/OLD SOURCES/, so it is not duplicated here.
+Dilna Logo - brand guide.pdf
+
+# Command Code tooling state (taste learnings, session data) — not part of the site
+.commandcode/
+
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+
+# scratch output
+photo/_out/
