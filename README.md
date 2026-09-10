@@ -21,12 +21,21 @@ kontakt.html        Kontakt
 styles.css          the entire design system
 main.js             mobile navigation only (no dependencies)
 DESIGN.md           direction, dials, and the reason for each major decision
-assets/             logo variants, hex-nut glyphs, favicon
+assets/             the three files the site references: logo, hex divider, favicon
 photo/              photographs and sponsor logos (all local, pre-optimised)
 ```
 
 Header and footer markup is repeated in each page on purpose, so the site needs no
-templating and no build step. Change navigation in all five files.
+templating and no build step.
+
+<!-- ponytail: duplicated chrome. Changing one nav item means editing five files, and
+     nothing catches a missed one. Ceiling accepted because the alternative is a build
+     step or a component layer, which costs more than it saves at five pages. Upgrade
+     path: if the page count passes roughly ten, generate the pages from one template. -->
+
+`AGENTS.md` is the ponytail ruleset (lazy-senior-dev code minimalism). It is the
+instruction-only install: one file, no plugin, no hooks, no dependency. Two deliberate
+ceilings are marked with `ponytail:` comments, here and in `main.js`.
 
 ## Preview locally
 
@@ -75,8 +84,15 @@ than designed. If you want more mint, take it from one of those five first.
 > prose values are the intended ones, update the three tokens and re-tint
 > `photo/icon-*.png` and `assets/favicon.svg`.
 
-The `assets/divider-glyph-chain.svg` is a row of the logo's hex nuts (cropped out of the
-repo's `bolt glyph chain.svg`, white background removed) used as a section divider.
+The `assets/divider-glyph-chain.svg` is a row of the logo's hex nuts, used as a section
+divider. It was cropped out of `bolt glyph chain.svg` in
+`gypridilna-app-2.0/LOGOS/` and had its white background removed; the source file is not
+kept here, so re-derive it from that repo if you need to change the crop.
+
+`assets/` holds only what is referenced: `logo-svetle.svg`, `divider-glyph-chain.svg` and
+`favicon.svg`. The other brand logo variants (all-white, and the dark version for light
+backgrounds) are not used by any page and were removed; they live in
+`gypridilna-app-2.0/LOGOS/` and in this repo's git history if you need them.
 
 ## Accessibility and behaviour
 

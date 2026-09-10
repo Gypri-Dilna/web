@@ -1,5 +1,13 @@
 /* Gypri dílna navigation only.
-   No dependencies. Direction and dials live in DESIGN.md. */
+   No dependencies. Direction and dials live in DESIGN.md.
+
+   ponytail: JS-gated disclosure. With JS off, the collapsed mobile nav cannot
+   open, so a small-screen visitor has no way to navigate. Ceiling accepted
+   because the alternatives were worse: native <details> needs CSS that fights
+   the UA stylesheet to stay open on desktop, and the checkbox hack needs a
+   <label> plus :checked plumbing for the same result. Upgrade path: if no-JS
+   mobile traffic ever matters, drop the collapse below 860px and let the links
+   wrap, which needs no script at all. */
 (function () {
   'use strict';
 
