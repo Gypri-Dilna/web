@@ -41,7 +41,7 @@
 
   /* -------------------------------------- reveals and section rules --
      Adds .is-visible when an element scrolls into view. .reveal fades and lifts;
-     .section-head uses the same hook to draw its orange rule in. */
+     .section-head uses the same hook to draw its mint rule in. */
 
   var watched = document.querySelectorAll('.reveal, .section-head');
 

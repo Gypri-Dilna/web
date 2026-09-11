@@ -71,7 +71,7 @@ cards, which is required because most sponsor logos are dark artwork.
 reads as prose, parallel items read as a list, images read as a gallery.
 
 **Why the tick divider?** A bench is ruled and measured. The divider is a hairline with
-ticks and one orange mark, which puts a workshop's own instrument language into the page
+ticks and one mint mark, which puts a workshop's own instrument language into the page
 rather than a generic ornament. It replaced an earlier hex-nut chain that repeated the logo
 too literally.
 
@@ -98,9 +98,8 @@ Three brand colours plus neutrals. Nothing else is added.
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| Accent | Circuit Mint | `#3aa398` | Primary action, current-page marker, focus ring, selection. |
+| Accent | Circuit Mint | `#3aa398` | The only accent. Primary action, current-page marker, focus ring, text selection, the eyebrow tick, the rule under a section heading, the key-phrase underline, the ruler mark, and the callout label. |
 | Accent (hover) | Mint Bright | `#5cc9bd` | Hover state of the primary action. |
-| Warm | Whistle Orange | `#ff6b35` | The playful colour, taken from the Gypri whistles the workshop actually prints. Used only on eyebrow ticks, the rule after a section heading, the tick divider's measured mark, underlined key words, the whistle callout label, and as a chip behind dark text. Never on body text, never as a background behind text. |
 | Text | Cloud Paper | `#fafdff` | Headings, and the background of sponsor cards. |
 | Text (body) | Body Grey | `#c3c8d2` | Paragraphs. 14.2:1 on the page background. |
 | Text (muted) | Muted Grey | `#7f8798` | Meta text and captions. 5.5:1, passes AA. |
@@ -111,6 +110,18 @@ Three brand colours plus neutrals. Nothing else is added.
 
 Graphite Core `#2f353e` is the second brand colour. It appears only as the raised surface,
 darkened, because the brand value is too light to sit under a photograph.
+
+**The accent budget: one colour.** Only one of the three brand colours is chromatic, so
+Circuit Mint carries every accent: interaction (primary action, focus, current page) and
+identity (the eyebrow tick, the rule under each section heading, the key-phrase underline,
+the ruler mark, the callout label). There is no second accent.
+
+**A wrong turn, recorded.** A later pass added a second accent, Whistle Orange `#ff6b35`,
+reasoning that the workshop's orange products made it brand evidence. That was wrong twice
+over: orange is a *product* colour and not a brand colour, and it broke the one-accent rule
+this document already set. A "make it less bland" request is not a licence to invent brand
+direction. Removed, and every gesture now draws in mint. If a future pass wants a second
+colour, that is a change to the brand guidelines, not a styling decision.
 
 ## 3. Typography
 
@@ -169,9 +180,8 @@ There is no icon library and no icon font. The only marks are:
 
 - **The logo mark** (`assets/logo-svetle.svg`), in the top bar and footer, and the hex-nut
   glyph cut from it as `assets/favicon.svg`.
-- **The tick divider** (`.rule-ticks`), a measurement rule built from CSS gradients with
-  one orange mark. This is the identity motif: a bench ruler, not the hex chain it
-  replaced.
+- **The tick divider** (`.rule-ticks`), a measurement rule: a small inline SVG tick, a
+  hairline, and one mint mark. This is the identity motif: a bench ruler.
 
 The first build used three generic equipment pictograms. They were deleted when real
 photographs of the same equipment became available, because a photo of the actual bench

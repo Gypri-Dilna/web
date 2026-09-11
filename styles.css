@@ -5,19 +5,17 @@
    Direction and dials: see DESIGN.md
    Palette per "Návod Brand 2025":
      Graphite Core #2f353e · Circuit Mint #3aa398 · Cloud Paper #fafdff
-   Mint carries the accent and appears in five roles only:
-   primary action, current page marker, focus ring, text selection, hex divider.
+   Circuit Mint is the only accent. It carries the primary action, the current
+   page marker, focus, text selection, and the identity motif (the tick, the
+   rule under a section heading, the underline, the ruler mark).
    ========================================================================== */
 
 :root {
-  /* brand */
+  /* brand. The guidelines name exactly three colours: Graphite Core,
+     Circuit Mint and Cloud Paper. Mint is the single accent. */
   --mint: #3aa398;
   --mint-bright: #5cc9bd;
   --paper: #fafdff;
-
-  /* the playful colour, taken from the orange whistles the workshop prints.
-     Mint stays the interactive accent; orange is personality only. */
-  --orange: #ff6b35;
 
   /* surfaces (--surface is Graphite Core darkened for media wells) */
   --bg: #08090c;
@@ -416,20 +414,15 @@ main {
   gap: 1.75rem;
 }
 
+/* Supporting items under the lead feature: a heading and a short paragraph,
+   separated by hairlines. This was a two-column grid back when each item carried
+   a pictogram beside its text; the pictograms were removed in favour of real
+   photographs, so the icon column is gone too. Leaving it would squeeze the copy
+   into 34px. */
+
 .feature-item {
-  display: grid;
-  grid-template-columns: 34px 1fr;
-  gap: 1.1rem;
-  align-items: start;
   border-top: 1px solid var(--border);
   padding-top: 1.5rem;
-}
-
-.feature-item img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  margin-top: 0.15rem;
 }
 
 .feature-item h3 {
@@ -793,28 +786,28 @@ main {
 }
 
 /* ==========================================================================
-   WHIMSY
+   THE GESTURES
    The site read as bland and corporate. The real fix was assets (see DESIGN.md),
-   but these are the deliberate gestures that give the pages a pulse. Each one has
-   a job; none is decoration for its own sake. Dose is capped: orange never touches
-   body text, and everything here stops under prefers-reduced-motion.
+   and these are the deliberate touches on top. Everything here is drawn with
+   Circuit Mint, the single accent the brand guidelines name. Each has a job, and
+   everything stops under prefers-reduced-motion.
    ========================================================================== */
 
 /* ------------------------------------------------- eyebrow gets a tick -- */
 
-/* A small orange square before the eyebrow, marking the start of a page's voice. */
+/* A small mint square before the eyebrow, marking the start of a page's voice. */
 .eyebrow::before {
   content: '';
   display: inline-block;
   width: 0.5em;
   height: 0.5em;
   margin-right: 0.6em;
-  background: var(--orange);
+  background: var(--mint);
   transform: translateY(-0.05em) rotate(45deg);
 }
 
 /* ------------------------------------------ rule under a section head --
-   A short orange rule that draws itself in. Replaces the numbered labels that
+   A short mint rule that draws itself in. Replaces the numbered labels that
    were removed, and gives the eye a deliberate entry point per section. */
 
 .section-head {
@@ -829,7 +822,7 @@ main {
   bottom: 0;
   width: 3.5rem;
   height: 2px;
-  background: var(--orange);
+  background: var(--mint);
   transform-origin: left;
 }
 
@@ -840,25 +833,18 @@ main {
 
 .js .section-head.is-visible::after { transform: scaleX(1); }
 
-/* -------------------------------------------------------- marker swash --
-   Underlines a key phrase in display type, like a ruler line under a drawing's
-   title. Used once or twice per page. */
+/* --------------------------------------------------------- key phrase --
+   A mint underline on a key phrase, like a ruler line under a drawing's title.
+   Built from text-decoration, not a coloured bar behind the words, for two
+   reasons: a bar behind text lowers the contrast of the glyphs sitting on it,
+   and it cannot wrap. An underline draws below the baseline, so it never
+   touches text contrast, and it breaks across lines like normal text. */
 
 .mark {
-  position: relative;
-  white-space: nowrap;
-}
-
-.mark::after {
-  content: '';
-  position: absolute;
-  left: -0.04em;
-  right: -0.04em;
-  bottom: 0.04em;
-  height: 0.22em;
-  background: var(--orange);
-  opacity: 0.85;
-  z-index: -1;
+  text-decoration: underline;
+  text-decoration-color: var(--mint);
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.2em;
 }
 
 /* ----------------------------------------------------------- photo tilt --
@@ -883,10 +869,10 @@ main {
 .brand:hover .brand-mark { transform: rotate(90deg); }
 
 /* -------------------------------------------------------- tick divider --
-   A measurement rule: a drawn ruler with one orange mark. The ticks are a small
-   inline SVG rather than a repeating gradient, because the ruler is the whole point
-   (a bench is ruled and measured) and a gradient stripe is the generic version of
-   this. It is the site's identity motif. */
+   A measurement rule: a drawn ruler with one mint mark. The ticks are a small
+   inline SVG rather than a repeating gradient, because the ruler is the whole
+   point (a bench is ruled and measured) and a gradient stripe is the generic
+   version of this. It is the site's identity motif. */
 
 .rule-ticks {
   position: relative;
@@ -916,31 +902,36 @@ main {
   top: 2px;
   width: 2.5rem;
   height: 7px;
-  background: var(--orange);
+  background: var(--mint);
 }
 
-/* ------------------------------------------------------ whistle callout --
-   The workshop's own product used as a real callout, not a stock icon. */
+/* --------------------------------------------------------- callout box --
+   A raised surface for a single call to action. Deliberately neutral: a surface
+   is not an accent moment, so it is a hairline and a faint wash, not a colour. */
 
-.whistle-note {
-  border: 1px solid rgba(255, 107, 53, 0.35);
-  background: rgba(255, 107, 53, 0.06);
+.callout {
+  border: 1px solid var(--border-strong);
+  background: rgba(250, 253, 255, 0.04);
   border-radius: var(--radius);
   padding: clamp(1.4rem, 3vw, 2.25rem);
 }
 
-.label-orange {
+.label-accent {
   display: inline-block;
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--mint);
   margin-bottom: 0.8rem;
 }
 
 /* ---------------------------------------------------------- hero photo --
-   Full-bleed hero with a warm scrim, so display type stays readable over it. */
+   A full-bleed band holding the school photograph. The scrim darkens its lower
+   edge so the image dissolves into the page instead of ending on a hard line. No
+   text sits over the photograph, so the scrim is not carrying readability, and it
+   is plain dark rather than tinted: a colour cast over a photograph of a yellow
+   building would fight the photograph for no purpose. */
 
 .hero-photo {
   position: relative;
@@ -959,9 +950,12 @@ main {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(8, 9, 12, 0.7) 0%, rgba(8, 9, 12, 0.3) 45%, rgba(8, 9, 12, 0.93) 100%),
-    linear-gradient(90deg, rgba(255, 107, 53, 0.16), transparent 55%);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 9, 12, 0.72) 0%,
+    rgba(8, 9, 12, 0.34) 45%,
+    rgba(8, 9, 12, 0.94) 100%
+  );
   pointer-events: none;
 }
 
@@ -981,15 +975,17 @@ main {
 
 .offset-top { margin-top: -2.5rem; }
 
-/* --------------------------------------------------------- orange chip --
-   The one place orange is allowed behind text: dark text on the fill, 6.4:1. */
+/* --------------------------------------------------------- mint tag --
+   A quiet label inside prose. Outlined rather than filled, so it reads as a tag
+   and cannot be mistaken for a button. Mint on the page background is 6.52:1. */
 
 .chip {
   display: inline-block;
-  padding: 0.2em 0.55em;
-  background: var(--orange);
-  color: #2a0d02;
-  font-weight: 800;
+  padding: 0.15em 0.5em;
+  border: 1px solid rgba(58, 163, 152, 0.45);
+  background: rgba(58, 163, 152, 0.12);
+  color: var(--mint);
+  font-weight: 700;
   border-radius: var(--radius);
   line-height: 1.4;
 }
