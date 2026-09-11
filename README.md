@@ -100,6 +100,47 @@ backgrounds) are not used by any page and were removed; they live in
 - Focus rings are visible (`:focus-visible`, brand mint).
 - The mobile nav is keyboard reachable and closes on `Esc`.
 - There is no animated background: motion is hover and focus only.
+- Two size floors: functional labels never below 11px, descriptive prose never below 12px.
+- Every text/surface pair in `styles.css` passes WCAG AA. Muted grey on the callout
+  background is the tightest at 5.15:1.
+
+## Tooling
+
+Three rulesets apply to this repo. None of them is a dependency: they are instructions and
+checks, never something the site loads at runtime.
+
+| Tool | What it is | How to run it |
+|---|---|---|
+| `AGENTS.md` | [ponytail](https://github.com/DietrichGebert/ponytail), lazy-senior-dev code minimalism. Instruction-only install: one file, no plugin, no hooks. | Loaded by the agent; nothing to run. |
+| [impeccable](https://github.com/pbakaus/impeccable) | 61 deterministic design detectors. No LLM, no API key. | `npx impeccable detect .` |
+| [design-guard](https://github.com/FReptar0/design-guard) | Anti-slop lint for HTML against `DESIGN.md`, plus a design-system scorer. | `npx design-guard lint .` |
+
+Current state: **impeccable 0 findings**, **design-guard 5/5 pages at 100/100**,
+`DESIGN.md` 73/100.
+
+### The two waived detector rules
+
+Both are recorded in `.impeccable/config.json` with their reasons, so a clean run is
+reproducible rather than hand-waved.
+
+**`cramped-padding` is a false positive.** The detector resolves `clamp()` for font-size
+but not for padding, so clamp-based padding reads as zero. Measured in a browser: `.section`
+has `padding-top: 101.12px` with a 102px real gap to its first child, and `.callout` has
+36px on every side. Nothing is flush. Worth reporting to the impeccable repo.
+
+**`layout-transition` is measured as harmless.** The mobile nav animates `max-height`, and
+the nav is `position: fixed`, so it is out of normal flow. Toggling it open and closed left
+`scrollHeight` (6895), `main` height (6186) and the first section's position identical at
+390px. The suggested alternative, `grid-template-rows`, needs a wrapper element added to
+all five pages for no measured gain.
+
+### What we do not use from design-guard
+
+Its generator pipeline (`dg discover`, `dg generate`, `dg build`) produces new screens via
+Google Stitch MCP. This site is hand-built from the brand guide and already exists, so that
+half of the tool is not applicable. Only the linter is used. `DESIGN.md` deliberately
+follows its eight-section structure, because that structure is clear and makes the document
+legible to the tool, but the content is this project's own.
 
 ## Before you go live
 

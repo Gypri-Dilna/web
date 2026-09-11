@@ -130,13 +130,12 @@ p:last-child { margin-bottom: 0; }
   max-width: 66ch;
 }
 
-/* Functional label voice. Tracking is kept low: heavy tracking on every label is a
-   generic "technical" trope, and it costs readability at small sizes. */
+/* Small muted meta line. Not uppercased: at 48 characters it is prose, and
+   uppercase costs legibility on anything longer than a label. */
 .hud-label {
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   line-height: 1.9;
   color: var(--muted);
 }
@@ -215,7 +214,7 @@ p:last-child { margin-bottom: 0; }
 
 .nav a {
   position: relative;
-  font-size: 0.68rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -289,18 +288,7 @@ main {
 }
 
 .section-head {
-  display: flex;
-  align-items: baseline;
-  gap: 1.25rem;
   margin-bottom: clamp(1.75rem, 3.5vw, 3rem);
-}
-
-.section-head .idx {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  flex-shrink: 0;
 }
 
 /* ------------------------------------------------------------ page hero -- */
@@ -311,10 +299,9 @@ main {
 
 .eyebrow {
   display: inline-block;
-  font-size: 0.64rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--muted);
   margin-bottom: 1.1rem;
 }
@@ -364,7 +351,7 @@ main {
   background: transparent;
   color: var(--text);
   font-family: inherit;
-  font-size: 0.68rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -512,7 +499,7 @@ main {
 }
 
 .data-label {
-  font-size: 0.64rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -589,10 +576,9 @@ main {
 
 .media-caption {
   margin-top: 0.7rem;
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--muted);
 }
 
@@ -667,7 +653,7 @@ main {
 }
 
 .timeline-date {
-  font-size: 0.68rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--muted);
@@ -692,20 +678,23 @@ main {
 
 .contact-row:first-of-type { border-top: 1px solid var(--border); }
 
+/* Not uppercased: these carry real text (an e-mail, a phone number, a phrase),
+   and uppercase damages all three. Leading 1.3 rather than 1: measured to stay
+   single-line at every breakpoint from 320px up, so this is headroom for a
+   longer value later rather than a fix for today. */
 .contact-row-mega {
   font-size: clamp(1.4rem, 5vw, 3.75rem);
   font-weight: 900;
-  text-transform: uppercase;
   letter-spacing: -0.02em;
-  line-height: 1;
+  line-height: 1.3;
   transition: color 0.25s var(--ease);
 }
 
 .contact-row-mega span {
   display: block;
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--muted);
   margin-top: 0.7rem;
 }
