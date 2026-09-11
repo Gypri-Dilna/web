@@ -6,15 +6,42 @@ line with it is recorded in `anti-slop/audit-001-2026-09-10.md`.
 
 ## Design Read
 
-> Reading this as: a school workshop site for students, parents and sponsors, in an
-> industrial hex-nut visual language drawn from the logo mark, dial
-> **ENERGY 2 / RHYTHM 2 / MOTION 1**.
+> Reading this as: a school workshop site for students, parents and sponsors, in a warm
+> industrial language built from the logo's hex nut, real photographs and one deliberately
+> playful colour, dial **ENERGY 3 / RHYTHM 3 / MOTION 2**.
 
 | Dial | Value | What that means here |
 |---|---|---|
-| **ENERGY** | 2 (Balanced) | Large display type gives the pages presence, but the palette is restrained and there are no decorative effects competing with the content. |
-| **RHYTHM** | 2 (Consistent, with a few breaks) | One shared section header pattern holds the site together. Composition varies underneath it: asymmetric feature block, stat grid with a photo, link list, gallery, split, callout. |
-| **MOTION** | 1 (Calm) | Hover and focus transitions only. No scroll reveals, no looping background animation. A static informational site does not need choreography. |
+| **ENERGY** | 3 (Bold) | This is a workshop full of teenagers building things, not a consultancy. The display type is large, one warm colour is allowed to shout, and photographs of real students carry the page. |
+| **RHYTHM** | 3 (Varied, asymmetric) | Sections deliberately do not share one composition: a full-bleed hero, a lead-plus-rows feature block, a stat band, a link list, an offset photo pair, a tilted photo strip. |
+| **MOTION** | 2 (Balanced) | Scroll-triggered reveals, a section rule that draws itself in, hover lift, and a logo that turns on hover. Nothing runs on its own, and all of it is off under `prefers-reduced-motion`. |
+
+### Why the dials went up
+
+The first build read as bland and corporate. The cause was diagnosable: the site had no
+real assets. It used one screenshot, three generic tool pictograms, and thumbnails pulled
+from an old WordPress page. The CSS was not the problem, and adding more decoration would
+not have fixed it.
+
+Two things changed:
+
+1. **Real photographs.** 232 images of the actual workshop were reviewed; 20 were selected.
+   Real students at real benches replaced pictograms, and the orange Gypri whistles the
+   workshop actually prints became a centrepiece instead of a sentence in a list.
+2. **A whisker of play.** One warm colour, tilted photographs like snapshots pinned to a
+   wall, rules that draw themselves in, and a logo that turns when you hover it.
+
+The anti-slop record in `anti-slop/` still governs: everything added here is either real
+content or a deliberate, documented gesture, not decoration for its own sake.
+
+### What was tried and removed
+
+An auto-scrolling marquee band was built, then cut. The impeccable detector flagged it,
+correctly: it repeated the four disciplines already listed in the section right below it,
+so it demanded attention without adding information. The review is in
+`anti-slop/audit-003-2026-09-11.md`.
+
+
 
 ## Direction source
 
@@ -43,8 +70,10 @@ cards, which is required because most sponsor logos are dark artwork.
 **Why this layout?** Each page is composed from what its content actually is: a process
 reads as prose, parallel items read as a list, images read as a gallery.
 
-**Why the hex divider?** The logo is a hex nut, so the divider is the brand mark's own
-geometry repeated. It is the site's identity motif, and the only decorative element kept.
+**Why the tick divider?** A bench is ruled and measured. The divider is a hairline with
+ticks and one orange mark, which puts a workshop's own instrument language into the page
+rather than a generic ornament. It replaced an earlier hex-nut chain that repeated the logo
+too literally.
 
 **Why a 2px radius?** A workshop is a place of square edges and machined corners. A larger
 radius would read as software, not as a bench.
@@ -60,7 +89,8 @@ understated, closer to a machined part than to a marketing page.
 
 Because the audience is Czech students, parents and sponsors, the tone is plain and
 concrete. No claims, no superlatives, no invented numbers. The one bold gesture is scale:
-a page title at up to 120px, and the hex-nut chain that repeats the logo's own geometry.
+a page title at up to 120px, real photographs of real students, and one warm colour used
+sparingly.
 
 ## 2. Color Palette & Roles
 
@@ -68,8 +98,9 @@ Three brand colours plus neutrals. Nothing else is added.
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| Accent | Circuit Mint | `#3aa398` | Primary action, current-page marker, focus ring, selection, hex divider. Five roles, no more. |
-| Accent (hover) | Mint Bright | `#5cc9bd` | Hover state of the primary action only. |
+| Accent | Circuit Mint | `#3aa398` | Primary action, current-page marker, focus ring, selection. |
+| Accent (hover) | Mint Bright | `#5cc9bd` | Hover state of the primary action. |
+| Warm | Whistle Orange | `#ff6b35` | The playful colour, taken from the Gypri whistles the workshop actually prints. Used only on eyebrow ticks, the rule after a section heading, the tick divider's measured mark, underlined key words, the whistle callout label, and as a chip behind dark text. Never on body text, never as a background behind text. |
 | Text | Cloud Paper | `#fafdff` | Headings, and the background of sponsor cards. |
 | Text (body) | Body Grey | `#c3c8d2` | Paragraphs. 14.2:1 on the page background. |
 | Text (muted) | Muted Grey | `#7f8798` | Meta text and captions. 5.5:1, passes AA. |
@@ -138,10 +169,13 @@ There is no icon library and no icon font. The only marks are:
 
 - **The logo mark** (`assets/logo-svetle.svg`), in the top bar and footer, and the hex-nut
   glyph cut from it as `assets/favicon.svg`.
-- **Three equipment icons** (`photo/icon-3d-tisk.png`, `icon-naradi.png`,
-  `icon-pocitace.png`). The workshop's own pictograms, recoloured to the body text colour
-  so they read as marks rather than decoration, used once each on the homepage.
-- **The hex divider** (`assets/divider-glyph-chain.svg`), the identity motif.
+- **The tick divider** (`.rule-ticks`), a measurement rule built from CSS gradients with
+  one orange mark. This is the identity motif: a bench ruler, not the hex chain it
+  replaced.
+
+The first build used three generic equipment pictograms. They were deleted when real
+photographs of the same equipment became available, because a photo of the actual bench
+beats a pictogram of a generic one.
 
 No arrows, no sparkles, no generic glyphs, no emoji. If a concept needs a mark that does
 not exist here, the label carries it instead.

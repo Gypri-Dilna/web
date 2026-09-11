@@ -11,6 +11,7 @@
 <meta property="og:locale" content="cs_CZ">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -36,6 +37,10 @@
 
 <main>
 
+  <div class="hero-photo">
+    <img src="photo/hero-skola.webp" alt="Masarykovo gymnázium v Příboře z ptačí perspektivy" width="2000" height="1500">
+  </div>
+
   <section class="page-hero">
     <div class="wrap">
       <span class="eyebrow">Ozvěte se nám</span>
@@ -50,16 +55,16 @@
 
   <section class="section">
     <div class="wrap">
-      <a class="contact-row" href="mailto:dilna@gypri.cz">
+      <a class="contact-row reveal" href="mailto:dilna@gypri.cz">
         <span class="contact-row-mega">dilna@gypri.cz<span>E-mail &middot; nejrychlejší cesta</span></span>
       </a>
-      <a class="contact-row" href="tel:+420605089399">
+      <a class="contact-row reveal" href="tel:+420605089399">
         <span class="contact-row-mega">+420 605 089 399<span>Telefon &middot; když potřebujete odpověď hned</span></span>
       </a>
-      <a class="contact-row" href="https://forms.gle/6kzz5z52tBujFoh19" target="_blank" rel="noopener">
+      <a class="contact-row reveal" href="https://forms.gle/6kzz5z52tBujFoh19" target="_blank" rel="noopener">
         <span class="contact-row-mega">Přihláška do kroužku<span>Vyplňte formulář a přidejte se</span></span>
       </a>
-      <a class="contact-row" href="https://instagram.com/gymnaziumpribor" target="_blank" rel="noopener">
+      <a class="contact-row reveal" href="https://instagram.com/gymnaziumpribor" target="_blank" rel="noopener">
         <span class="contact-row-mega">@gymnaziumpribor<span>Instagram &middot; novinky ze školy i dílny</span></span>
       </a>
     </div>
@@ -71,7 +76,7 @@
         <h2>Kde nás najdete</h2>
       </div>
       <div class="split">
-        <div>
+        <div class="reveal">
           <p class="lead">
             Dveře č. 64, hned vedle výtvarky, v suterénu školy.
           </p>
@@ -93,9 +98,11 @@
             a domluvíme se na termínu návštěvy nebo na tom, co potřebujete vyrobit.
           </p>
         </div>
-        <figure style="margin:0">
-          <div class="media media--tall">
-            <img src="photo/dilna-08.webp" alt="Prostor dílny" loading="lazy" decoding="async">
+        <figure style="margin:0" class="reveal">
+          <div class="tilt tilt--r">
+            <div class="media media--tall">
+              <img src="photo/prace-stolni.webp" alt="Práce u stolu v dílně" loading="lazy" decoding="async">
+            </div>
           </div>
           <figcaption class="media-caption">Dílna &middot; suterén školy</figcaption>
         </figure>

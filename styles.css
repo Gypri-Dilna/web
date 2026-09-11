@@ -15,6 +15,10 @@
   --mint-bright: #5cc9bd;
   --paper: #fafdff;
 
+  /* the playful colour, taken from the orange whistles the workshop prints.
+     Mint stays the interactive accent; orange is personality only. */
+  --orange: #ff6b35;
+
   /* surfaces (--surface is Graphite Core darkened for media wells) */
   --bg: #08090c;
   --surface: #14171c;
@@ -320,24 +324,6 @@ main {
 
 .page-hero .lead { margin-bottom: 2rem; }
 
-/* --------------------------------------------------------------- bits -- */
-
-/* The identity motif: the logo mark's own hex nut, repeated. */
-.divider-glyphs {
-  height: 20px;
-  margin: clamp(2rem, 4vw, 3.25rem) 0;
-  background-color: var(--mint);
-  opacity: 0.45;
-  -webkit-mask-image: url('assets/divider-glyph-chain.svg');
-  mask-image: url('assets/divider-glyph-chain.svg');
-  -webkit-mask-repeat: repeat-x;
-  mask-repeat: repeat-x;
-  -webkit-mask-position: left center;
-  mask-position: left center;
-  -webkit-mask-size: auto 100%;
-  mask-size: auto 100%;
-}
-
 /* -------------------------------------------------------------- buttons -- */
 
 .btn {
@@ -582,14 +568,6 @@ main {
   color: var(--muted);
 }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.75rem;
-}
-
-.gallery .media { aspect-ratio: 3 / 4; }
-
 /* ----------------------------------------------------------- sponsors -- */
 
 .sponsor-grid {
@@ -625,16 +603,6 @@ main {
 .sponsor:focus-visible {
   filter: grayscale(0);
   opacity: 1;
-}
-
-/* ---------------------------------------------------------- callouts -- */
-
-/* Distinguished by background and border weight. No accent stripe. */
-.callout {
-  border: 1px solid var(--border-strong);
-  background: rgba(250, 253, 255, 0.04);
-  padding: clamp(1.4rem, 3vw, 2.25rem);
-  border-radius: var(--radius);
 }
 
 /* ----------------------------------------------------------- timeline -- */
@@ -805,7 +773,6 @@ main {
 
   .feature-rest { gap: 1.5rem; }
 
-  .gallery { grid-template-columns: repeat(2, 1fr); }
   .timeline { grid-template-columns: 1fr; row-gap: 1.25rem; }
   .footer-main { grid-template-columns: 1fr; gap: 2rem; }
 
@@ -822,12 +789,241 @@ main {
 }
 
 @media (max-width: 520px) {
-  .gallery { grid-template-columns: 1fr; }
   .btn { width: 100%; }
 }
 
+/* ==========================================================================
+   WHIMSY
+   The site read as bland and corporate. The real fix was assets (see DESIGN.md),
+   but these are the deliberate gestures that give the pages a pulse. Each one has
+   a job; none is decoration for its own sake. Dose is capped: orange never touches
+   body text, and everything here stops under prefers-reduced-motion.
+   ========================================================================== */
+
+/* ------------------------------------------------- eyebrow gets a tick -- */
+
+/* A small orange square before the eyebrow, marking the start of a page's voice. */
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.6em;
+  background: var(--orange);
+  transform: translateY(-0.05em) rotate(45deg);
+}
+
+/* ------------------------------------------ rule under a section head --
+   A short orange rule that draws itself in. Replaces the numbered labels that
+   were removed, and gives the eye a deliberate entry point per section. */
+
+.section-head {
+  position: relative;
+  padding-bottom: 0.9rem;
+}
+
+.section-head::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 3.5rem;
+  height: 2px;
+  background: var(--orange);
+  transform-origin: left;
+}
+
+.js .section-head::after {
+  transform: scaleX(0);
+  transition: transform 0.6s var(--ease) 0.1s;
+}
+
+.js .section-head.is-visible::after { transform: scaleX(1); }
+
+/* -------------------------------------------------------- marker swash --
+   Underlines a key phrase in display type, like a ruler line under a drawing's
+   title. Used once or twice per page. */
+
+.mark {
+  position: relative;
+  white-space: nowrap;
+}
+
+.mark::after {
+  content: '';
+  position: absolute;
+  left: -0.04em;
+  right: -0.04em;
+  bottom: 0.04em;
+  height: 0.22em;
+  background: var(--orange);
+  opacity: 0.85;
+  z-index: -1;
+}
+
+/* ----------------------------------------------------------- photo tilt --
+   Photographs sit slightly askew, like snapshots pinned to a workshop wall.
+   Alternating directions stop a gallery reading as a grid of stamps. */
+
+.tilt {
+  transform: rotate(-1.1deg);
+  transition: transform 0.5s var(--ease);
+}
+
+.tilt--r { transform: rotate(1.1deg); }
+
+.tilt:hover { transform: rotate(0deg) scale(1.015); }
+
+.tilt .media { border-color: rgba(250, 253, 255, 0.18); }
+
+/* ------------------------------------------------------- wordmark spin --
+   The logo mark turns a quarter on hover. The one moving part in the chrome. */
+
+.brand-mark { transition: transform 0.7s var(--ease); }
+.brand:hover .brand-mark { transform: rotate(90deg); }
+
+/* -------------------------------------------------------- tick divider --
+   A measurement rule: a drawn ruler with one orange mark. The ticks are a small
+   inline SVG rather than a repeating gradient, because the ruler is the whole point
+   (a bench is ruled and measured) and a gradient stripe is the generic version of
+   this. It is the site's identity motif. */
+
+.rule-ticks {
+  position: relative;
+  height: 10px;
+  margin: clamp(2rem, 4vw, 3.25rem) 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M0 2v7' stroke='rgba(250,253,255,0.30)' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left 0;
+  background-size: 14px 9px;
+}
+
+/* the one measured mark, sitting on the hairline */
+.rule-ticks::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2px;
+  height: 1px;
+  background: var(--border);
+}
+
+.rule-ticks::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 2.5rem;
+  height: 7px;
+  background: var(--orange);
+}
+
+/* ------------------------------------------------------ whistle callout --
+   The workshop's own product used as a real callout, not a stock icon. */
+
+.whistle-note {
+  border: 1px solid rgba(255, 107, 53, 0.35);
+  background: rgba(255, 107, 53, 0.06);
+  border-radius: var(--radius);
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+}
+
+.label-orange {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 0.8rem;
+}
+
+/* ---------------------------------------------------------- hero photo --
+   Full-bleed hero with a warm scrim, so display type stays readable over it. */
+
+.hero-photo {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: clamp(240px, 42vw, 520px);
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 9, 12, 0.7) 0%, rgba(8, 9, 12, 0.3) 45%, rgba(8, 9, 12, 0.93) 100%),
+    linear-gradient(90deg, rgba(255, 107, 53, 0.16), transparent 55%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------- photo strip -- */
+
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+}
+
+.photo-strip .media { aspect-ratio: 4 / 3; }
+
+/* ------------------------------------------------------ offset split --
+   Text and image deliberately out of alignment, so a section does not read as a
+   symmetric two-column template. */
+
+.offset-top { margin-top: -2.5rem; }
+
+/* --------------------------------------------------------- orange chip --
+   The one place orange is allowed behind text: dark text on the fill, 6.4:1. */
+
+.chip {
+  display: inline-block;
+  padding: 0.2em 0.55em;
+  background: var(--orange);
+  color: #2a0d02;
+  font-weight: 800;
+  border-radius: var(--radius);
+  line-height: 1.4;
+}
+
+/* ------------------------------------------------------------- reveals --
+   Opt-in: content is only hidden once JS has confirmed it is running, so a JS
+   failure never leaves the page blank. main.js adds .is-visible on scroll. */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 /* --------------------------------------------------------------- motion --
-   MOTION 1: hover and focus transitions only, nothing that runs on its own. */
+   MOTION 2: reveals, hover lift, one slow band. Everything off on request. */
+
+@media (max-width: 860px) {
+  /* Tilt reads as sloppiness on a narrow screen, not as charm. */
+  .tilt,
+  .tilt--r,
+  .tilt:hover { transform: none; }
+  .offset-top { margin-top: 0; }
+  .photo-strip { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 520px) {
+  .photo-strip { grid-template-columns: 1fr; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -837,4 +1033,14 @@ main {
   *::after {
     transition-duration: 0.001ms !important;
   }
+
+  /* Content appears immediately rather than waiting to be scrolled into view.
+     Without this a reduced-motion visitor gets a page that looks blank until
+     they scroll, and depends on the observer firing at all. */
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .section-head::after { transform: scaleX(1); transition: none; }
 }

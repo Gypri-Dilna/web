@@ -4,6 +4,11 @@
 # meeting schedule and the door number on the site.
 Dilna Logo - brand guide.pdf
 
+# The workshop's raw photo and video archive: 265 files, 4.3 GB, including two
+# 1 GB videos. Far past GitHub's per-file limit. The 20 curated, optimised
+# images the site actually uses are committed in photo/ (3.8 MB total).
+Gypridílna/
+
 # Command Code tooling state (taste learnings, session data), not part of the site
 .commandcode/
 

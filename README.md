@@ -21,7 +21,7 @@ kontakt.html        Kontakt
 styles.css          the entire design system
 main.js             mobile navigation only (no dependencies)
 DESIGN.md           direction, dials, and the reason for each major decision
-assets/             the three files the site references: logo, hex divider, favicon
+assets/             the two files the site references: logo, favicon
 photo/              photographs and sponsor logos (all local, pre-optimised)
 ```
 
@@ -82,17 +82,27 @@ than designed. If you want more mint, take it from one of those five first.
 > `#2F353E`, `#3AA69A`, `#FAFDFF`, and the shipped logo files use `#2f353e`, `#3aa398`,
 > `#fafdff`. This site uses the logo values so the site and the logo assets match. If the
 > prose values are the intended ones, update the three tokens and re-tint
-> `photo/icon-*.png` and `assets/favicon.svg`.
+> `assets/favicon.svg`.
 
-The `assets/divider-glyph-chain.svg` is a row of the logo's hex nuts, used as a section
-divider. It was cropped out of `bolt glyph chain.svg` in
-`gypridilna-app-2.0/LOGOS/` and had its white background removed; the source file is not
-kept here, so re-derive it from that repo if you need to change the crop.
+The section divider is `.rule-ticks`, a measurement rule drawn entirely in CSS. It replaced
+a hex-nut chain that repeated the logo too literally; that SVG is gone.
 
-`assets/` holds only what is referenced: `logo-svetle.svg`, `divider-glyph-chain.svg` and
-`favicon.svg`. The other brand logo variants (all-white, and the dark version for light
-backgrounds) are not used by any page and were removed; they live in
-`gypridilna-app-2.0/LOGOS/` and in this repo's git history if you need them.
+`assets/` holds only what is referenced: `logo-svetle.svg` and `favicon.svg`. The other
+brand logo variants (all-white, and the dark version for light backgrounds) are not used by
+any page and were removed; they live in `gypridilna-app-2.0/LOGOS/` and in this repo's git
+history if you need them.
+
+## Where the photographs came from
+
+The workshop's own photo archive was provided: 232 images, reviewed one by one as labelled
+contact sheets. Twenty were selected and are committed to `photo/` as optimised WebP.
+
+They were chosen for one reason: the first build had no real assets, and that was why it
+read as bland and corporate. Real students at real benches, the orange Gypri whistles the
+workshop prints, and drone shots of the school carry the site now.
+
+When adding a photo: keep the long edge at or under 1600px, use WebP around quality 80, and
+give it a real Czech `alt`. Decorative images take `alt=""`.
 
 ## Accessibility and behaviour
 

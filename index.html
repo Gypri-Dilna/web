@@ -11,6 +11,7 @@
 <meta property="og:locale" content="cs_CZ">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -36,6 +37,10 @@
 
 <main>
 
+  <div class="hero-photo">
+    <img src="photo/hero-skola.webp" alt="Masarykovo gymnázium v Příboře z ptačí perspektivy" width="2000" height="1500">
+  </div>
+
   <section class="page-hero">
     <div class="wrap">
       <span class="eyebrow">Dílna Masarykova gymnázia Příbor</span>
@@ -43,7 +48,7 @@
       <p class="lead">
         Design, kód a konstrukce, a to vše na gymplu. Místo pro 3D tisk, robotiku,
         elektroniku a programování, kde studenti získávají praxi na reálných zakázkách,
-        v kroužku i v soutěžích. Překonáváme hranice učebnic.
+        v kroužku i v soutěžích. <span class="mark">Překonáváme hranice učebnic.</span>
       </p>
       <div class="btn-row">
         <a class="btn btn--primary" href="https://forms.gle/6kzz5z52tBujFoh19" target="_blank" rel="noopener">Přidej se do kroužku</a>
@@ -59,18 +64,21 @@
       </div>
 
       <div class="feature-split">
-        <article class="feature-lead">
-          <img src="photo/icon-3d-tisk.png" alt="" width="512" height="512" loading="lazy" decoding="async">
+        <article class="feature-lead reveal">
           <h3>3D tisk</h3>
           <p>
             Sedm tiskáren Prusa Research: pět modelů MK4, jedna MK3 a jedna MINI. Od výukových
             pomůcek přes prototypy až po náhradní díly pro školu.
           </p>
+          <div class="tilt" style="margin-top:1.75rem">
+            <div class="media">
+              <img src="photo/tiskarna-mk3.webp" alt="3D tiskárna Prusa při tisku" loading="lazy" decoding="async">
+            </div>
+          </div>
         </article>
 
         <div class="feature-rest">
-          <article class="feature-item">
-            <img src="photo/icon-naradi.png" alt="" width="512" height="512" loading="lazy" decoding="async">
+          <article class="feature-item reveal">
             <div>
               <h3>Elektronika a robotika</h3>
               <p>
@@ -79,13 +87,21 @@
               </p>
             </div>
           </article>
-          <article class="feature-item">
-            <img src="photo/icon-pocitace.png" alt="" width="512" height="512" loading="lazy" decoding="async">
+          <article class="feature-item reveal">
             <div>
               <h3>Programování</h3>
               <p>
                 Sedm notebooků věnovaných sponzorem Aliance Laundry a jeden výkonný stolní
                 počítač. Modelování, návrh desek i řídicí software pro naše zařízení.
+              </p>
+            </div>
+          </article>
+          <article class="feature-item reveal">
+            <div>
+              <h3>Kroužek</h3>
+              <p>
+                Každou druhou až třetí středu se dílna plní. Nováčci dostanou do ruky pájku
+                i klávesnici hned první den.
               </p>
             </div>
           </article>
@@ -97,40 +113,139 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <h2>Naše vybavení</h2>
+        <h2>Vyrábíme píšťalky</h2>
       </div>
       <div class="split split--wide-left">
-        <div>
-          <div class="grid grid--2">
-            <div class="data">
-              <div class="data-label">3D tiskárny</div>
-              <div class="data-val">07<small>5&times; MK4, 1&times; MK3, 1&times; MINI</small></div>
-            </div>
-            <div class="data">
-              <div class="data-label">Notebooky</div>
-              <div class="data-val">07<small>Dar Aliance Laundry</small></div>
-            </div>
-            <div class="data">
-              <div class="data-label">Stolní počítač</div>
-              <div class="data-val">01<small>Pro náročné modely</small></div>
-            </div>
-            <div class="data">
-              <div class="data-label">Sponzoři</div>
-              <div class="data-val">07<small>Firmy a organizace</small></div>
-            </div>
-          </div>
-          <p style="margin-top:1.5rem">
-            Vytváříme centrum praxe, kde se informatika potkává s robotikou, 3D tiskem
-            a elektrotechnikou. Nabízíme prostor pro samostatnou práci, konzultace
-            i sdílení nápadů.
+        <div class="reveal">
+          <p class="lead">
+            <span class="chip">Gypri píšťalky</span> visí za bezpečnostním sklíčkem v každé
+            třídě. Navrhli, vytiskli a nainstalovali jsme je sami.
           </p>
-        </div>
-        <figure style="margin:0">
-          <div class="media media--tall">
-            <img src="photo/dilna-vybaveni.webp" alt="Vybavení dílny" loading="lazy" decoding="async">
+          <p>
+            Slouží pedagogům k přivolání pomoci a koordinaci evakuace a jsou součástí školního
+            krizového postupu. Vznikly celé v dílně: od prvního modelu až po umístění
+            ve všech třídách.
+          </p>
+          <p>
+            Tiskneme je po stovkách. Někdy se zadaří a tiskárna jich vyplivne celou podložku
+            naráz, jindy strávíme odpoledne laděním výšky tónu.
+          </p>
+          <div class="btn-row" style="margin-top:1.5rem">
+            <a class="btn" href="nase-prace.html">Všechno, co vyrábíme</a>
           </div>
-          <figcaption class="media-caption">Dílna &middot; Masarykovo gymnázium Příbor</figcaption>
+        </div>
+        <div class="reveal">
+          <div class="tilt tilt--r">
+            <div class="media media--tall">
+              <img src="photo/pistalka-detail.webp" alt="3D tištěná oranžová píšťalka s logem Gypri" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="tilt" style="margin-top:0.9rem">
+            <div class="media">
+              <img src="photo/pistalky-hromada.webp" alt="Krabice plná hotových píšťalek" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Naše vybavení</h2>
+      </div>
+      <div class="grid grid--2" style="gap:0">
+        <div class="data reveal">
+          <div class="data-label">3D tiskárny</div>
+          <div class="data-val">07<small>5&times; MK4, 1&times; MK3, 1&times; MINI</small></div>
+        </div>
+        <div class="data reveal">
+          <div class="data-label">Notebooky</div>
+          <div class="data-val">07<small>Dar Aliance Laundry</small></div>
+        </div>
+        <div class="data reveal">
+          <div class="data-label">Stolní počítač</div>
+          <div class="data-val">01<small>Pro náročné modely</small></div>
+        </div>
+        <div class="data reveal">
+          <div class="data-label">Sponzoři</div>
+          <div class="data-val">07<small>Firmy a organizace</small></div>
+        </div>
+      </div>
+      <p class="reveal" style="margin-top:1.75rem;max-width:70ch">
+        Vytváříme centrum praxe, kde se informatika potkává s robotikou, 3D tiskem
+        a elektrotechnikou. Nabízíme prostor pro samostatnou práci, konzultace
+        i sdílení nápadů.
+      </p>
+
+      <div class="rule-ticks" aria-hidden="true"></div>
+
+      <div class="photo-strip">
+        <div class="tilt reveal">
+          <div class="media">
+            <img src="photo/dilna-stol.webp" alt="Pracovní stůl v dílně" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="tilt tilt--r reveal">
+          <div class="media">
+            <img src="photo/dilna-naradi.webp" alt="Nástěnka s nářadím" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="tilt reveal">
+          <div class="media">
+            <img src="photo/tiskarna-spulka.webp" alt="Špulka filamentu u tiskárny" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Pohled do dílny</h2>
+      </div>
+      <p class="lead reveal" style="margin-bottom:2.5rem;max-width:70ch">
+        Nikdo tu nesedí a neposlouchá. Někdo pájí, někdo řeší, proč se deska nenahodila,
+        a někdo ostatním vysvětluje, co právě objevil.
+      </p>
+
+      <div class="split split--wide-left">
+        <figure class="reveal" style="margin:0">
+          <div class="tilt">
+            <div class="media">
+              <img src="photo/prace-sestavovani.webp" alt="Studenti sestavují počítač" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <figcaption class="media-caption">Sestavování počítače &middot; pět hlav u jednoho stolu</figcaption>
         </figure>
+        <figure class="reveal offset-top" style="margin:0">
+          <div class="tilt tilt--r">
+            <div class="media media--tall">
+              <img src="photo/prace-vrtacka.webp" alt="Student s vrtačkou a ochrannými brýlemi" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <figcaption class="media-caption">Vrtačka &middot; brýle nasazené</figcaption>
+        </figure>
+      </div>
+
+      <div class="photo-strip" style="margin-top:1.5rem">
+        <div class="tilt reveal">
+          <div class="media">
+            <img src="photo/prace-vyuka.webp" alt="Výuka v dílně" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="tilt tilt--r reveal">
+          <div class="media">
+            <img src="photo/prace-pajeni.webp" alt="Pájení desky" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="tilt reveal">
+          <div class="media">
+            <img src="photo/prace-notebooky.webp" alt="Studenti u notebooků" loading="lazy" decoding="async">
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -142,25 +257,25 @@
       </div>
       <ul class="listlinks">
         <li>
-          <a class="listlink" href="nase-prace.html">
+          <a class="listlink reveal" href="nase-prace.html">
             <span class="listlink-title">Gypri píšťalky</span>
             <span class="listlink-desc">3D tištěné evakuační píšťalky za bezpečnostním sklíčkem v každé třídě.</span>
           </a>
         </li>
         <li>
-          <a class="listlink" href="nase-prace.html">
+          <a class="listlink reveal" href="nase-prace.html">
             <span class="listlink-title">Výukové pomůcky</span>
             <span class="listlink-desc">Pomůcky na míru pro výuku, od geometrie po cokoliv dalšího.</span>
           </a>
         </li>
         <li>
-          <a class="listlink" href="nase-prace.html">
+          <a class="listlink reveal" href="nase-prace.html">
             <span class="listlink-title">Aretační díly</span>
             <span class="listlink-desc">Speciální komponenty, jako jsou aretační díly na hlavové opěrky.</span>
           </a>
         </li>
         <li>
-          <a class="listlink" href="cansat.html">
+          <a class="listlink reveal" href="cansat.html">
             <span class="listlink-title">CanSat</span>
             <span class="listlink-desc">Součásti a prototypy pro studentskou družici v plechovce.</span>
           </a>
@@ -172,24 +287,10 @@
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <h2>Pohled do dílny</h2>
-      </div>
-      <div class="gallery">
-        <div class="media"><img src="photo/dilna-01.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="media"><img src="photo/dilna-02.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="media"><img src="photo/dilna-03.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="media"><img src="photo/dilna-04.webp" alt="" loading="lazy" decoding="async"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
         <h2>Kde nás najdete</h2>
       </div>
       <div class="split">
-        <div>
+        <div class="reveal">
           <p class="lead">
             Dveře č. 64, hned vedle výtvarky, v suterénu školy.
           </p>
@@ -198,12 +299,18 @@
             Napište nám na <a href="mailto:dilna@gypri.cz"><strong>dilna@gypri.cz</strong></a>
             nebo zavolejte na <a href="tel:+420605089399"><strong>+420 605 089 399</strong></a>.
           </p>
+          <div class="tilt" style="margin-top:1.75rem">
+            <div class="media">
+              <img src="photo/dilna-regaly.webp" alt="Police s vybavením dílny" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
-        <div class="callout">
-          <h3 style="margin-bottom:0.9rem">Přidej se do kroužku</h3>
+        <div class="whistle-note reveal">
+          <span class="label-orange">Přidej se do kroužku</span>
+          <h3 style="margin-bottom:0.9rem">Scházíme se každou 2. až 3. středu</h3>
           <p>
-            Chceš tisknout, pájet, programovat a bastlit? Kroužek se schází každou 2. až 3.
-            středu, minimálně jednou za měsíc, ve dveřích č. 64. Přihlas se přes formulář.
+            Minimálně jednou za měsíc, ve dveřích č. 64. Nemusíš nic umět. Stačí přijít
+            s nápadem, nebo jen se zvědavostí.
           </p>
           <div class="btn-row" style="margin-top:1.5rem">
             <a class="btn btn--primary" href="https://forms.gle/6kzz5z52tBujFoh19" target="_blank" rel="noopener">Vyplnit přihlášku</a>

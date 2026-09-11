@@ -11,6 +11,7 @@
 <meta property="og:locale" content="cs_CZ">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -57,9 +58,10 @@
         <h2>Gypri píšťalky pro bezpečnost</h2>
       </div>
       <div class="split split--wide-left">
-        <div>
+        <div class="reveal">
           <p class="lead">
-            Navrhli a vyrobili jsme 3D tištěné píšťalky pro mimořádné události a evakuaci školy.
+            Navrhli a vyrobili jsme 3D tištěné píšťalky pro mimořádné události
+            a evakuaci školy. <span class="mark">Celé je tiskneme sami.</span>
           </p>
           <p>
             Jsou umístěny za bezpečnostním sklíčkem v každé třídě, aby byly rychle dostupné
@@ -69,17 +71,29 @@
           <div class="tech">
             <div class="tech-title">Bezpečnost &middot; Evakuace</div>
             <p class="tech-desc">
-              Návrh, tisk a instalace proběhly kompletně v naší dílně, od prvního modelu
+              Návrh, tisk i instalace proběhly kompletně v naší dílně, od prvního modelu
               až po umístění ve všech třídách.
             </p>
           </div>
         </div>
-        <figure style="margin:0">
-          <div class="media media--tall">
-            <img src="photo/pistalky.webp" alt="Gypri píšťalky pro bezpečnost" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="media-caption">Gypri píšťalky &middot; za bezpečnostním sklíčkem</figcaption>
-        </figure>
+        <div class="reveal">
+          <figure style="margin:0">
+            <div class="tilt tilt--r">
+              <div class="media media--tall">
+                <img src="photo/pistalka-detail.webp" alt="3D tištěná oranžová píšťalka s logem Gypri" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <figcaption class="media-caption">Gypri píšťalka &middot; sítotisk loga</figcaption>
+          </figure>
+          <figure style="margin:0.9rem 0 0">
+            <div class="tilt">
+              <div class="media">
+                <img src="photo/pistalky-hromada.webp" alt="Krabice plná hotových píšťalek" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <figcaption class="media-caption">Hotové kusy &middot; čekají na instalaci</figcaption>
+          </figure>
+        </div>
       </div>
     </div>
   </section>
@@ -90,13 +104,15 @@
         <h2>Pomůcky pro výuku</h2>
       </div>
       <div class="split">
-        <figure style="margin:0">
-          <div class="media media--tall">
-            <img src="photo/pomucka.webp" alt="3D tištěná výuková pomůcka" loading="lazy" decoding="async">
+        <figure style="margin:0" class="reveal">
+          <div class="tilt">
+            <div class="media media--tall">
+              <img src="photo/pistalky-tisk.webp" alt="Podložka tiskárny plná píšťalek" loading="lazy" decoding="async">
+            </div>
           </div>
-          <figcaption class="media-caption">Pomůcka na míru &middot; 3D tisk</figcaption>
+          <figcaption class="media-caption">Celá podložka &middot; tisk po stovkách</figcaption>
         </figure>
-        <div>
+        <div class="reveal">
           <p class="lead">
             Náš tým je schopen vytvořit jakoukoliv pomůcku do školy, kterou si jen dokážete představit.
           </p>
@@ -110,6 +126,15 @@
             aretační díly na hlavové opěrky, držáky a kryty pro studentské projekty
             a prototypy, které postupně upravujeme až do hotové podoby.
           </p>
+          <p>
+            Nechybí ani věci pro radost, jako je tahle busta vytažená z tiskárny
+            jen proto, že nás zajímalo, jestli to půjde.
+          </p>
+          <div class="tilt" style="margin-top:1.75rem;max-width:22rem">
+            <div class="media">
+              <img src="photo/detail-busta.webp" alt="3D tištěná busta" loading="lazy" decoding="async">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -152,21 +177,32 @@
         </figure>
       </div>
 
-      <div class="divider-glyphs" aria-hidden="true"></div>
+      <div class="rule-ticks" aria-hidden="true"></div>
 
-      <div class="gallery">
-        <div class="media"><img src="photo/dilna-05.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="media"><img src="photo/dilna-06.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="media"><img src="photo/dilna-07.webp" alt="" loading="lazy" decoding="async"></div>
-        <div class="media"><img src="photo/dilna-vybaveni.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="photo-strip">
+        <div class="tilt reveal">
+          <div class="media">
+            <img src="photo/prace-pajeni.webp" alt="Pájení desky" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="tilt tilt--r reveal">
+          <div class="media">
+            <img src="photo/dilna-naradi.webp" alt="Nástěnka s nářadím" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="tilt reveal">
+          <div class="media">
+            <img src="photo/prace-konstrukce.webp" alt="Student při konstrukci" loading="lazy" decoding="async">
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="wrap">
-      <div class="callout">
-        <span class="eyebrow">Nebojte se ozvat</span>
+      <div class="whistle-note reveal">
+        <span class="label-orange">Nebojte se ozvat</span>
         <h2 style="margin-bottom:1rem">Rádi vám pomůžeme</h2>
         <p class="lead" style="margin-bottom:1.75rem">
           Neváhejte nás kontaktovat, pokud by se vám něco hodilo, třeba na nějaký projekt.
