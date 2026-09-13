@@ -12,6 +12,73 @@ line with it is recorded in `anti-slop/audit-001-2026-09-10.md`.
 > accent, and measured values set in a monospace face, dial
 > **ENERGY 3 / RHYTHM 3 / MOTION 2**.
 
+### The idea: Dveře 64
+
+The site is not a brochure about a workshop. It is a walk into one.
+
+There is a real door, numbered 64, in the basement of a real school, and most of the
+building has never been through it. On the other side is a room that manufactures
+things the school quietly depends on: the evacuation whistles behind safety glass in
+every classroom, spare parts nobody sells, and a satellite built by teenagers.
+
+That is the whole site. You arrive at the door, you go down one floor, you find out
+what is in the room, and then you find out the room is not a hobby.
+
+#### Why the page is ordered the way it is
+
+The previous version was a well-executed brochure: hero, what we do, proof, equipment,
+contact. Every section answered a question the visitor had not asked, so there was no
+reason to read past the first screen. Reordering it around one fact fixed that.
+
+The arc, and what holds each step:
+
+| Beat | Section | What keeps you reading |
+|---|---|---|
+| Arrive | The threshold: type, no photograph | A door number and no explanation. The gap opens before any image loads. |
+| See the place | Arrival plate, `Obr. 01` | The building the door is in. Concrete, and it makes the door real. |
+| Go down | `−1 SUTERÉN` | The floor changes. One line, then the room. |
+| Look around | `Co tu stojí`, the inventory | Objects with terse facts. Withholding: it does not explain why they matter yet. |
+| The turn | `Něco z téhle místnosti visí v každé třídě v budově.` | The realisation that the room is load-bearing for the whole building. |
+| The thread left open | `A pak postavili satelit` | Deliberately unresolved here. It closes on the CanSat page. |
+| Invitation | `Dveře jsou otevřené` | The door is not locked. Nothing here is gated. |
+
+Two rules follow from this and are checked in the build verification:
+
+- **The gap is opened before the payoff, and it is opened with enough context to itch.**
+  Loewenstein's information gap theory only works when the reader knows enough to notice
+  what is missing. "Dveře 64" works because the next line says which building and which
+  floor. A hook with no context is just noise.
+- **Every promise is kept.** The door number is real, the floor is real, the whistles are
+  really in every classroom, the satellite is really being built. Nothing is teased that
+  the site does not then deliver, on this page or the next one. A gap that never closes is
+  clickbait, and this is a school, not a content farm.
+
+#### What makes it feel unfamiliar
+
+- **Type before photographs.** The first viewport is a dark field with a title on it. Almost
+  every other site on the internet opens with a big image. This one opens with the question
+  and earns the image a moment later.
+- **A door number set in the instrumentation face.** "Dveře" in Montserrat and "64" in
+  monospace, on the same baseline at display size. A human sign and a machine number on
+  one line is the whole site in a single move.
+- **A depth datum instead of a section number.** `±0` and `−1` are the two floors this
+  building really has. It is a place marker, not a step counter, and it is used exactly
+  twice so it never becomes decoration.
+- **An inventory that behaves like labels on drawers.** Large object names, one terse
+  factual line each, a real count where a count exists. It reads as the room rather than
+  as a services page.
+- **Withholding.** The room is described before it is explained. The reader leans in
+  because the reason has not been given yet.
+
+#### What it deliberately is not
+
+Scrollytelling was researched and mostly rejected. No sticky graphic panels, no parallax
+layers, no scroll-linked animation, no progress bar, no scroll cue pulse, no counters
+ticking up. Those are the standard machinery of the genre and they would have cost page
+weight, broken under `prefers-reduced-motion`, and needed JavaScript to say what one
+`<span>` says now. The pacing comes from the order of the sections and from how much
+space each beat gets, which needs no script at all.
+
 ### The lane, and where it came from
 
 The owner asked for the site to feel like **Teenage Engineering** or **Nothing**. Those are
@@ -60,9 +127,24 @@ What transferred, and what did not:
   community condensation of Nothing's released brand guidelines, for the typeface job
   separation, the size-based tracking and leading table, the grid and margin rule, and the
   graphics refusal list (no colour fills, no drop shadows, no gradients)
+- [The Curiosity Gap](https://datafield.dev/why-they-watch/part-01/chapter-05/), for
+  Loewenstein's information gap theory, the Zeigarnik effect and open loops, and the
+  distinction between genuine curiosity and clickbait. This is the source of the two rules
+  in "The idea: Dveře 64": give enough context for the gap to itch, and keep every promise.
+- [Scrollytelling design reference](https://chrislemke.github.io/website_designs/designs/Scrollytelling.html),
+  read and then mostly declined. It is a good account of the genre, and it is the reason
+  this page has no sticky graphic panels, no parallax and no scroll cue. Its one adopted
+  principle is "show, then tell", which is why the photograph follows the question.
 
-These are consulted as *philosophy*. No asset, font or colour is taken from them, and
-nothing here is a copy of either company's identity.
+All of the above are consulted as *philosophy*. No asset, font or colour is taken from any
+of them, and nothing here is a copy of another company's identity.
+
+**Read and not used as a source.** A widely-shared listicle on tech website design was
+provided and read in full. Its concrete advice is a clear value proposition in the hero,
+ample white space, subtle animations and social proof, which describes the median polished
+technology site. That is the look this project was asked to move away from, so nothing was
+taken from it beyond confirming the direction to avoid. It is recorded here so a later pass
+does not re-adopt it as a reference.
 
 | Dial | Value | What that means here |
 |---|---|---|
@@ -82,8 +164,10 @@ Two things changed:
 1. **Real photographs.** 232 images of the actual workshop were reviewed; 20 were selected.
    Real students at real benches replaced pictograms, and the orange Gypri whistles the
    workshop actually prints became a centrepiece instead of a sentence in a list.
-2. **A whisker of play.** One warm colour, tilted photographs like snapshots pinned to a
-   wall, rules that draw themselves in, and a logo that turns when you hover it.
+2. **A whisker of play.** Rules that draw themselves in, and a logo that turns when you
+   hover it. (This pass also added one warm colour and tilted the photographs like
+   snapshots pinned to a wall; the colour was reverted and the tilt straightened in the
+   instrumentation pass, section 7.)
 
 The anti-slop record in `anti-slop/` still governs: everything added here is either real
 content or a deliberate, documented gesture, not decoration for its own sake.
@@ -129,8 +213,9 @@ ticks and one mint mark, which puts a workshop's own instrument language into th
 rather than a generic ornament. It replaced an earlier hex-nut chain that repeated the logo
 too literally.
 
-**Why a 2px radius?** A workshop is a place of square edges and machined corners. A larger
-radius would read as software, not as a bench.
+**Why square corners?** A workshop is a place of square edges and machined corners. Any
+radius reads as software, not as a bench, so the value is a deliberate `0` everywhere and
+not the browser default.
 
 ---
 
@@ -235,8 +320,11 @@ the CSS honest at three breakpoints without inventing steps nothing uses.
 
 ## 5. Component Patterns
 
-Eleven components, and no more. Anything new should reuse one of these or justify itself
-here.
+The components, and no more. Anything new should reuse one of these or justify itself here.
+The dead-CSS check in the build verification fails if a component is declared with no markup
+using it, so this list and the stylesheet cannot drift apart.
+
+The system, shared by every page:
 
 - **Buttons**: `.btn` is an outline; `.btn--primary` is filled mint with near-black text.
   Both are sentence case, never pill-shaped, radius 0.
@@ -246,17 +334,32 @@ here.
   Photographs sit square and never zoom; the frame hairline answers the cursor instead.
 - **Figure caption**: `.media-caption` with a `.fig-num` plate number, set in mono. Hovering
   the frame turns the number mint. Every photograph on the site is a numbered figure.
-- **Gallery**: `.gallery`, a four-up grid that drops to two then one.
-- **Link list**: `.listlinks`, rows separated by hairlines, for items of equal weight that
-  do not need boxes around them.
 - **Callout**: `.callout`, a heightened surface for a single call to action.
 - **Timeline**: `.timeline`, a four-up row of dated phases, used once on CanSat.
-- **Data**: `.data` / `.data-label` / `.data-val`, a readout band for a few headline
-  numbers. Labels and values are in mono. Never used to display a word or a symbol.
 - **Spec sheet**: `.specs`, the datasheet. A `<dl>` of `.specs-row`, each row a
   `.specs-label` (`<dt>`) with a `.specs-val` and `.specs-note` (`<dd>`) stacked beside it,
   hairline separated. Used for facts that are genuinely countable or genuinely enumerated.
-  Rows stack to three lines below 560px.
+  Rows stack below 560px.
+
+The descent, the components that carry the idea described in "The idea: Dveře 64":
+
+- **Threshold**: `.threshold` / `.threshold-title` / `.threshold-num`, the opening. Type on
+  dark with no photograph, so the question arrives before the building does. The numeral
+  inside the title is set in mono at display size.
+- **Depth datum**: `.depth`, a mono floor marker with a trailing hairline. Used exactly
+  twice, at `±0` and `−1`, because those are the two floors this building has.
+- **Arrival**: `.arrival`, the school photograph as a contained plate at 2:1 with a
+  numbered caption. It replaced a full-bleed scrim hero that ran on three pages at once.
+- **Descent**: `.descent`, the one full-bleed break in the page, on the raised surface. It
+  is the moment the floor changes.
+- **Inventory**: `.ledge`, the objects in the room. A `<ul>`; each row is a `.ledge-name`,
+  an optional `.ledge-qty` in mono, and a `.ledge-note`. Rows stack below 560px.
+- **Statement**: `.statement`, a large sentence-case line for the turn of the story. Leading
+  is 1.3 because it wraps and has to be read, unlike the display headings.
+
+**Removed when the homepage was reordered around the story**, and not to be reintroduced
+without markup to match: `.feature-split`, `.feature-lead`, `.feature-rest`, `.feature-item`,
+`.listlinks` and its parts, `.data` and its parts, `.hero-photo`, and `.gallery`.
 
 ## 6. Iconography
 
