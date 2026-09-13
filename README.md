@@ -69,13 +69,22 @@ Tokens at the top of `styles.css`:
 | `--surface` | `#14171c` | Graphite Core, darkened for media wells |
 | `--paper` | `#fafdff` | Cloud Paper |
 
-Typography is **Montserrat** throughout, as the brand guide specifies. The technical
-reading comes from uppercase on functional labels, not from a monospace face.
+Typography is **Montserrat** throughout, as the brand guide specifies. A system monospace
+stack (`--mono`, nothing downloaded) is used for measured values and plate labels only:
+datasheet values, readout numbers, and the `Obr. 01` figure numbers. The test is whether a
+value could be read aloud as part of a sentence. If it could, it stays in Montserrat.
 
-**The accent is deliberately narrow.** Mint appears in five roles only: the primary
-action, the current-page marker, the focus ring, the text selection colour, and the hex
-divider. Adding it elsewhere is what made the first version read as decorated rather
-than designed. If you want more mint, take it from one of those five first.
+**The accent is deliberately narrow.** Mint carries every accent, in two groups. Interaction:
+the primary action, the current-page marker, the focus ring, and the text selection colour.
+Identity: the eyebrow tick, the rule under each section heading, the key-phrase underline,
+the ruler mark, the callout label, and the plate number on a figure. There is no second
+colour. Adding one is what made an earlier version read as decorated rather than designed.
+
+**Direction follows the instrumentation lane.** The owner asked for the site to feel like
+Teenage Engineering or Nothing, so the page is built as a datasheet for a real workshop:
+square corners, strictly aligned photographs, numbered figures, and countable facts in a
+spec sheet. What was adopted and, more importantly, what was refused (their palettes, their
+licensed typefaces) is recorded in `DESIGN.md`.
 
 > **Note on the brand guide's hex values.** Page 7 lists the palette names with
 > `#343840`, `#67A498` and `#FAFCFE` in the prose, but the swatches on that same page read
@@ -126,7 +135,7 @@ checks, never something the site loads at runtime.
 | [design-guard](https://github.com/FReptar0/design-guard) | Anti-slop lint for HTML against `DESIGN.md`, plus a design-system scorer. | `npx design-guard lint .` |
 
 Current state: **impeccable 0 findings**, **design-guard 5/5 pages at 100/100**,
-`DESIGN.md` 73/100.
+`DESIGN.md` 85/100.
 
 ### The two waived detector rules
 

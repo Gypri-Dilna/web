@@ -6,15 +6,69 @@ line with it is recorded in `anti-slop/audit-001-2026-09-10.md`.
 
 ## Design Read
 
-> Reading this as: a school workshop site for students, parents and sponsors, in a warm
-> industrial language built from the logo's hex nut, real photographs and one deliberately
-> playful colour, dial **ENERGY 3 / RHYTHM 3 / MOTION 2**.
+> Reading this as: a school workshop site for students, parents and sponsors, in the
+> **instrumentation lane**. The page is a datasheet for a real workshop: industrial
+> language built from the logo's hex nut, real photographs of the actual benches, one
+> accent, and measured values set in a monospace face, dial
+> **ENERGY 3 / RHYTHM 3 / MOTION 2**.
+
+### The lane, and where it came from
+
+The owner asked for the site to feel like **Teenage Engineering** or **Nothing**. Those are
+two different companies with one shared position, and it is not "dark mode with mono type".
+Both refuse to hide the engineering:
+
+- **Teenage Engineering** treats constraint as the aesthetic. Exposed screws, monospaced
+  type throughout, tabular alignment for free, specs laid out in a grid of cells, and
+  **radius explicitly zero, not a default**. Their palette is deliberately tiny. Play is
+  allowed, but it lives in behaviour and content, never in wobbly decoration.
+- **Nothing** works in "technical warmth": mechanical type used with strict, non-overlapping
+  jobs, a defined column grid with a computed margin, and an explicit refusal list (no
+  gradients, no drop shadows, no colour fills on graphic elements, no altering the grid).
+
+What transferred, and what did not:
+
+| Adopted | Why it fits |
+|---|---|
+| Mono for measured values only | A spec readout is instrumentation, not brand voice. This is the single biggest lever. |
+| Numbered figures | Photographs become plates (`Obr. 01`), which is documentation language rather than decoration. |
+| A real datasheet component | Turns countable facts into a spec sheet instead of a row of marketing stat cards. |
+| Radius 0 | A machined panel has no radius. Was 2px, which reads as software chrome. |
+| Strictly aligned photographs | Both brands are precisely aligned. The previous tilt read as scrapbook. |
+| Nothing self-runs | TE motion is an instrument responding to you, not an ambient loop. |
+
+**Not adopted, deliberately:**
+
+- **Their palettes.** Teenage Engineering's identity colour is orange and Nothing's accents
+  are red, blue and yellow. The brand guidelines name three colours and only one is
+  chromatic, so mint carries everything. Copying a reference brand's colour is not
+  applying its philosophy, it is wearing its clothes.
+- **A downloaded technical face.** Nothing ships NType82 and NDot55; TE ships its own.
+  Typefaces are licensed brand assets and this project has one mandated face. The
+  instrumentation voice is carried by a system monospace stack instead: nothing to
+  download, nothing to licence, nothing to break offline.
+- **Replacing Montserrat.** The brand guide mandates it and it remains the voice for
+  headings, prose, navigation and buttons. Only measured values changed face.
+
+**Reference material consulted** (September 2026):
+
+- teenage.engineering, for the product and typographic system in use
+- [Teenage Engineering: Constraints as Aesthetic](https://blakecrosley.com/guides/design/teenage-engineering),
+  for the reasoning behind the mono-only voice, the radius-0 choice, and the grid-of-specs
+  pattern
+- [Nothing brand reference](https://nothing.wiki/nothing/brand_reference), an unofficial
+  community condensation of Nothing's released brand guidelines, for the typeface job
+  separation, the size-based tracking and leading table, the grid and margin rule, and the
+  graphics refusal list (no colour fills, no drop shadows, no gradients)
+
+These are consulted as *philosophy*. No asset, font or colour is taken from them, and
+nothing here is a copy of either company's identity.
 
 | Dial | Value | What that means here |
 |---|---|---|
-| **ENERGY** | 3 (Bold) | This is a workshop full of teenagers building things, not a consultancy. The display type is large, one warm colour is allowed to shout, and photographs of real students carry the page. |
-| **RHYTHM** | 3 (Varied, asymmetric) | Sections deliberately do not share one composition: a full-bleed hero, a lead-plus-rows feature block, a stat band, a link list, an offset photo pair, a tilted photo strip. |
-| **MOTION** | 2 (Balanced) | Scroll-triggered reveals, a section rule that draws itself in, hover lift, and a logo that turns on hover. Nothing runs on its own, and all of it is off under `prefers-reduced-motion`. |
+| **ENERGY** | 3 (Bold) | A workshop full of teenagers building things, not a consultancy. Display type is large, the page title carries the page, and photographs of real students do the work. The energy is now in scale and precision rather than in decoration. |
+| **RHYTHM** | 3 (Varied, asymmetric) | Sections deliberately do not share one composition: a full-bleed hero, a lead-plus-rows feature block, a readout band, a datasheet, a numbered figure strip. |
+| **MOTION** | 2 (Balanced) | Scroll-triggered reveals, a section rule that draws itself in, a hairline that answers the cursor, a plate number that turns mint. Nothing runs on its own, and all of it is off under `prefers-reduced-motion`. |
 
 ### Why the dials went up
 
@@ -125,22 +179,43 @@ colour, that is a change to the brand guidelines, not a styling decision.
 
 ## 3. Typography
 
-One family: **Montserrat**, weights 300 to 900, loaded from Google Fonts. Uppercase is
-reserved for headings and short labels; anything carrying a sentence is sentence case.
+Two faces, with jobs that never overlap. This is the one place the reference brands
+changed the system, and it is deliberately narrow.
 
-| Element | Size | Weight | Line Height |
-|---------|------|--------|-------------|
-| Page title | `clamp(2.6rem, 9.5vw, 7.5rem)` | 900 | 0.88 |
-| H2 (section) | `clamp(1.6rem, 3.4vw, 2.75rem)` | 800 | 0.96 |
-| H3 | `clamp(1.05rem, 1.9vw, 1.4rem)` | 800 | 0.96 |
-| Contact row | `clamp(1.4rem, 5vw, 3.75rem)` | 900 | 1.3 |
-| Lead paragraph | `clamp(1rem, 1.45vw, 1.2rem)` | 300 | 1.75 |
-| Body | `1rem` | 300 | 1.75 |
-| Descriptive meta | `0.75rem` | 500 | 1.9 |
-| Functional label | `0.6875rem` | 600 | 1.9 |
+**Montserrat** is the brand voice and the only downloaded font. Weights 300 to 900, from
+Google Fonts. Everything a person reads as the workshop speaking: headings, prose,
+navigation, buttons, captions that carry a sentence. Uppercase is reserved for headings
+and short labels; anything carrying a sentence is sentence case.
 
-Two size floors, both deliberate: functional UI text never goes below 11px, descriptive
-prose never below 12px. Label tracking is capped at 0.1em.
+**A system monospace stack** (`--mono`) is the instrumentation voice, used *only* for
+measured values and plate labels: datasheet values, readout numbers, the figure numbers on
+photographs, and the small uppercase labels directly above a measurement. It is
+`ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace`,
+so nothing is downloaded, nothing is licensed, and nothing breaks offline. It never sets
+prose.
+
+The split follows the test: if a value could be read aloud as part of a sentence, it stays
+in Montserrat. If it is a reading off an instrument, it goes in mono.
+
+| Element | Size | Treatment |
+|---------|------|-----------|
+| Page title | `clamp(2.6rem, 9.5vw, 7.5rem)` | 900, leading 0.88, Montserrat |
+| H2 (section) | `clamp(1.6rem, 3.4vw, 2.75rem)` | 800, leading 0.96, Montserrat |
+| H3 | `clamp(1.05rem, 1.9vw, 1.4rem)` | 800, leading 0.96, Montserrat |
+| Contact row | `clamp(1.4rem, 5vw, 3.75rem)` | 900, leading 1.3, Montserrat |
+| Lead paragraph | `clamp(1rem, 1.45vw, 1.2rem)` | 300, leading 1.75, Montserrat |
+| Body | `1rem` | 300, leading 1.75, Montserrat |
+| Descriptive meta | `0.75rem` | 500, leading 1.9, Montserrat |
+| Functional label | `0.6875rem` | 600, leading 1.9, Montserrat |
+| Data readout | `clamp(1.5rem, 3vw, 2.25rem)` | 600, leading 1, mono |
+| Datasheet value | `1.05rem` | 600, mono |
+| Datasheet label | `0.6875rem` | 400, uppercase, tracked 0.1em, mono |
+| Datasheet note | `0.75rem` | 400, mono |
+| Figure number | `0.75rem` | 400, leading 1.5, mono |
+
+Four size floors, all deliberate: functional UI text never below 11px, descriptive prose
+never below 12px, datasheet notes never below 12px, figure captions never below 12px.
+Label tracking is capped at 0.1em.
 
 ## 4. Spacing & Layout
 
@@ -152,27 +227,36 @@ the CSS honest at three breakpoints without inventing steps nothing uses.
 - **Section vertical padding**: `clamp(3.5rem, 8vw, 7rem)`
 - **Grid gap**: `1.25rem` between parallel items
 - **Top bar height**: `74px`, `66px` on mobile
-- **Radius**: `2px`, the only radius in the system
+- **Radius**: `0`, everywhere. A machined panel has no radius and a rounded one reads as
+  software chrome. This was `2px`; it became a deliberate zero after the reference study.
 - **Easing**: `cubic-bezier(.2,.7,.3,1)`, the only curve
-- **Breakpoints**: `1080px` (grids collapse), `860px` (nav collapses to the toggle), `520px` (single column)
+- **Breakpoints**: `1080px` (grids collapse), `860px` (nav collapses to the toggle),
+  `560px` (datasheet rows stack), `520px` (single column)
 
 ## 5. Component Patterns
 
-Nine components, and no more. Anything new should reuse one of these or justify itself
+Eleven components, and no more. Anything new should reuse one of these or justify itself
 here.
 
 - **Buttons**: `.btn` is an outline; `.btn--primary` is filled mint with near-black text.
-  Both are sentence case, never pill-shaped, radius 2px.
+  Both are sentence case, never pill-shaped, radius 0.
 - **Panels**: `.panel`, a hairline box for genuinely parallel items of equal weight.
 - **Cards**: `.card`, a link-shaped panel with a title and a one-line description.
 - **Media**: `.media`, a bordered well holding a photograph. `--tall` is 3:4, default 16:10.
+  Photographs sit square and never zoom; the frame hairline answers the cursor instead.
+- **Figure caption**: `.media-caption` with a `.fig-num` plate number, set in mono. Hovering
+  the frame turns the number mint. Every photograph on the site is a numbered figure.
 - **Gallery**: `.gallery`, a four-up grid that drops to two then one.
 - **Link list**: `.listlinks`, rows separated by hairlines, for items of equal weight that
   do not need boxes around them.
 - **Callout**: `.callout`, a heightened surface for a single call to action.
 - **Timeline**: `.timeline`, a four-up row of dated phases, used once on CanSat.
-- **Data**: `.data` / `.data-label` / `.data-val`, for a real countable number and its
-  caption. Never used to display a word or a symbol.
+- **Data**: `.data` / `.data-label` / `.data-val`, a readout band for a few headline
+  numbers. Labels and values are in mono. Never used to display a word or a symbol.
+- **Spec sheet**: `.specs`, the datasheet. A `<dl>` of `.specs-row`, each row a
+  `.specs-label` (`<dt>`) with a `.specs-val` and `.specs-note` (`<dd>`) stacked beside it,
+  hairline separated. Used for facts that are genuinely countable or genuinely enumerated.
+  Rows stack to three lines below 560px.
 
 ## 6. Iconography
 
@@ -182,6 +266,8 @@ There is no icon library and no icon font. The only marks are:
   glyph cut from it as `assets/favicon.svg`.
 - **The tick divider** (`.rule-ticks`), a measurement rule: a small inline SVG tick, a
   hairline, and one mint mark. This is the identity motif: a bench ruler.
+- **The plate number** (`.fig-num`), the `Obr. 01` prefix on a figure caption. It borrows
+  documentation convention rather than drawing a glyph.
 
 The first build used three generic equipment pictograms. They were deleted when real
 photographs of the same equipment became available, because a photo of the actual bench
@@ -201,6 +287,9 @@ Photographs come from the workshop's own library: the old WordPress site and the
 - Sponsor logos sit on a Cloud Paper card, because most are dark artwork that would
   disappear on the dark background. This is the one place the site goes light.
 - Decorative images take `alt=""`; meaningful ones get a real description in Czech.
+- **Every photograph is a numbered figure.** Its caption opens with `.fig-num` (`Obr. 01`),
+  numbered per page from 01. Photographs sit square: no rotation, no zoom on hover. The
+  tilt was removed in the reference pass because precision is the whole point of the lane.
 
 ## 8. Do's and Don'ts
 
@@ -208,10 +297,13 @@ Guardrails earned during the build. The audit trail is in `anti-slop/`.
 
 ### Do
 
-- Keep to the three brand colours, and keep mint to its five roles.
-- Respect the two size floors: 11px for functional labels, 12px for descriptive prose.
-- Vary section composition: a process reads as prose, parallel items as a list, images as
-  a gallery.
+- Keep to the three brand colours, and keep mint to its multiple roles.
+- Use mono for measured values and plate labels only, and Montserrat for everything read as
+  a sentence. See the test in section 3.
+- Respect the size floors: 11px for functional labels, 12px for descriptive prose,
+  datasheet notes and figure captions.
+- Vary section composition: a process reads as prose, parallel items as a list, countable
+  facts as a datasheet, images as numbered figures.
 - Write Czech copy with proper diacritics, in the workshop's own voice from the flyer.
 - Cite a real source for every fact. The README lists where each claim comes from.
 - Compress any new photo before committing it.
@@ -219,13 +311,20 @@ Guardrails earned during the build. The audit trail is in `anti-slop/`.
 
 ### Don't
 
+- Don't let mono set prose. It is instrumentation, not a voice.
+- Don't download a second font. The instrumentation face is a system stack on purpose.
+- Don't copy a reference brand's colour. Mint carries the accent; see section 2.
 - Don't add a dependency or a build step. Five pages do not need a bundler.
 - Don't use the em dash character in copy.
 - Don't set a sentence in uppercase, or track a label wider than 0.1em.
-- Don't number sections. The headings carry the structure.
+- Don't number sections. The headings carry the structure. Numbered *figures* are the one
+  exception, because a datasheet genuinely refers to its plates.
 - Don't add a coloured left stripe, a decorative gradient, a background pattern, or a glow.
   Each was removed once already, with reasons recorded in `anti-slop/`.
-- Don't animate a layout property, and don't add motion that runs on its own.
-- Don't invent an opening time, a statistic, or a testimonial. An empty section beats a
-  fabricated one.
-- Don't hotlink an image or load a font other than Montserrat.
+- Don't add a drop shadow or a gradient to a graphic element. Nothing's guidelines forbid
+  both, and this site agrees.
+- Don't rotate or tilt a photograph, and don't animate a layout property.
+- Don't add motion that runs on its own.
+- Don't invent an opening time, a statistic, or a testimonial, and don't put an invented
+  number in a datasheet. A row with no note beats a padded one.
+- Don't hotlink an image.
