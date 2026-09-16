@@ -64,9 +64,8 @@ Two rules follow from this and are checked in the build verification:
 - **A depth datum instead of a section number.** `±0` and `−1` are the two floors this
   building really has. It is a place marker, not a step counter, and it is used exactly
   twice so it never becomes decoration.
-- **An inventory that behaves like labels on drawers.** Large object names, one terse
-  factual line each, a real count where a count exists. It reads as the room rather than
-  as a services page.
+- **An inventory that behaves like labels on drawers.** Large object names and one terse
+  factual line each. It reads as the room rather than as a services page.
 - **Withholding.** The room is described before it is explained. The reader leans in
   because the reason has not been given yet.
 
@@ -150,7 +149,7 @@ does not re-adopt it as a reference.
 |---|---|---|
 | **ENERGY** | 3 (Bold) | A workshop full of teenagers building things, not a consultancy. Display type is large, the page title carries the page, and photographs of real students do the work. The energy is now in scale and precision rather than in decoration. |
 | **RHYTHM** | 3 (Varied, asymmetric) | Sections deliberately do not share one composition: a full-bleed hero, a lead-plus-rows feature block, a readout band, a datasheet, a numbered figure strip. |
-| **MOTION** | 2 (Balanced) | Scroll-triggered reveals, a section rule that draws itself in, a hairline that answers the cursor, a plate number that turns mint. Nothing runs on its own, and all of it is off under `prefers-reduced-motion`. |
+| **MOTION** | 2 (Balanced) | Scroll-triggered reveals, a section rule that draws itself in, a hairline that answers the cursor, a plate number that turns mint, a sponsor logo that lifts and comes up to colour, and a mobile menu whose links arrive one after another. Nothing runs on its own, and all of it is off under `prefers-reduced-motion`. |
 
 ### Why the dials went up
 
@@ -164,10 +163,11 @@ Two things changed:
 1. **Real photographs.** 232 images of the actual workshop were reviewed; 20 were selected.
    Real students at real benches replaced pictograms, and the orange Gypri whistles the
    workshop actually prints became a centrepiece instead of a sentence in a list.
-2. **A whisker of play.** Rules that draw themselves in, and a logo that turns when you
-   hover it. (This pass also added one warm colour and tilted the photographs like
-   snapshots pinned to a wall; the colour was reverted and the tilt straightened in the
-   instrumentation pass, section 7.)
+2. **A whisker of play.** Rules that draw themselves in, a logo that turned on hover, one
+   warm colour, and photographs tilted like snapshots pinned to a wall. Only the rules
+   survive: the colour was reverted (section 2), the tilt was straightened in the
+   instrumentation pass (section 7), and the logo turn was cut later as a moving part with
+   no job.
 
 The anti-slop record in `anti-slop/` still governs: everything added here is either real
 content or a deliberate, documented gesture, not decoration for its own sake.
@@ -209,9 +209,8 @@ cards, which is required because most sponsor logos are dark artwork.
 reads as prose, parallel items read as a list, images read as a gallery.
 
 **Why the tick divider?** A bench is ruled and measured. The divider is a hairline with
-ticks and one mint mark, which puts a workshop's own instrument language into the page
-rather than a generic ornament. It replaced an earlier hex-nut chain that repeated the logo
-too literally.
+ticks, which puts a workshop's own instrument language into the page rather than a generic
+ornament. It replaced an earlier hex-nut chain that repeated the logo too literally.
 
 **Why square corners?** A workshop is a place of square edges and machined corners. Any
 radius reads as software, not as a bench, so the value is a deliberate `0` everywhere and
@@ -228,8 +227,8 @@ understated, closer to a machined part than to a marketing page.
 
 Because the audience is Czech students, parents and sponsors, the tone is plain and
 concrete. No claims, no superlatives, no invented numbers. The one bold gesture is scale:
-a page title at up to 120px, real photographs of real students, and one warm colour used
-sparingly.
+a page title that reaches 120px and keeps growing on a wide display, real photographs of
+real students, and one accent colour used sparingly.
 
 ## 2. Color Palette & Roles
 
@@ -237,7 +236,7 @@ Three brand colours plus neutrals. Nothing else is added.
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| Accent | Circuit Mint | `#3aa398` | The only accent. Primary action, current-page marker, focus ring, text selection, the eyebrow tick, the rule under a section heading, the key-phrase underline, the ruler mark, and the callout label. |
+| Accent | Circuit Mint | `#3aa398` | The only accent. Primary action, current-page marker, focus ring, text selection, the eyebrow tick, the rule under a section heading, the key-phrase underline, the sponsor frame on hover, and the callout label. |
 | Accent (hover) | Mint Bright | `#5cc9bd` | Hover state of the primary action. |
 | Text | Cloud Paper | `#fafdff` | Headings, and the background of sponsor cards. |
 | Text (body) | Body Grey | `#c3c8d2` | Paragraphs. 14.2:1 on the page background. |
@@ -251,9 +250,9 @@ Graphite Core `#2f353e` is the second brand colour. It appears only as the raise
 darkened, because the brand value is too light to sit under a photograph.
 
 **The accent budget: one colour.** Only one of the three brand colours is chromatic, so
-Circuit Mint carries every accent: interaction (primary action, focus, current page) and
-identity (the eyebrow tick, the rule under each section heading, the key-phrase underline,
-the ruler mark, the callout label). There is no second accent.
+Circuit Mint carries every accent: interaction (primary action, focus, current page, the
+hovered sponsor frame) and identity (the eyebrow tick, the rule under each section heading,
+the key-phrase underline, the callout label). There is no second accent.
 
 **A wrong turn, recorded.** A later pass added a second accent, Whistle Orange `#ff6b35`,
 reasoning that the workshop's orange products made it brand evidence. That was wrong twice
@@ -308,7 +307,8 @@ There is no rigid 4px grid. Spacing comes from a small set of named tokens, whic
 the CSS honest at three breakpoints without inventing steps nothing uses.
 
 - **Gutter**: `clamp(1.25rem, 5vw, 4.5rem)`, one horizontal rail for every page
-- **Max content width**: `1360px`
+- **Max content width**: `1360px`, `1720px` above 1600px, where the root font-size also
+  begins to grow so the type scales with the wider column
 - **Section vertical padding**: `clamp(3.5rem, 8vw, 7rem)`
 - **Grid gap**: `1.25rem` between parallel items
 - **Top bar height**: `74px`, `66px` on mobile
@@ -352,8 +352,9 @@ The descent, the components that carry the idea described in "The idea: Dveře 6
   numbered caption. It replaced a full-bleed scrim hero that ran on three pages at once.
 - **Descent**: `.descent`, the one full-bleed break in the page, on the raised surface. It
   is the moment the floor changes.
-- **Inventory**: `.ledge`, the objects in the room. A `<ul>`; each row is a `.ledge-name`,
-  an optional `.ledge-qty` in mono, and a `.ledge-note`. Rows stack below 560px.
+- **Inventory**: `.ledge`, the objects in the room. A `<ul>`; each row is a `.ledge-name`
+  and a `.ledge-note`. Counts live inside the name as words ("Sedm tiskáren"), not repeated
+  as a mono figure beside it.
 - **Statement**: `.statement`, a large sentence-case line for the turn of the story. Leading
   is 1.3 because it wraps and has to be read, unlike the display headings.
 
@@ -365,10 +366,12 @@ without markup to match: `.feature-split`, `.feature-lead`, `.feature-rest`, `.f
 
 There is no icon library and no icon font. The only marks are:
 
-- **The logo mark** (`assets/logo-svetle.svg`), in the top bar and footer, and the hex-nut
-  glyph cut from it as `assets/favicon.svg`.
-- **The tick divider** (`.rule-ticks`), a measurement rule: a small inline SVG tick, a
-  hairline, and one mint mark. This is the identity motif: a bench ruler.
+- **The logo mark** (`assets/logo-svetle.svg`), in the top bar and footer, and the same
+  glyph as `assets/favicon.svg`, drawn in mint on a transparent background so it reads on
+  both light and dark browser chrome.
+- **The tick divider** (`.rule-ticks`), a measurement rule: a small inline SVG tick on a
+  hairline. This is the identity motif: a bench ruler. It carried a mint mark until that
+  read as a stray coloured bar under whatever sat above it, and it was removed.
 - **The plate number** (`.fig-num`), the `Obr. 01` prefix on a figure caption. It borrows
   documentation convention rather than drawing a glyph.
 

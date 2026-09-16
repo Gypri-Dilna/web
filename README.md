@@ -49,8 +49,8 @@ Opening `index.html` directly over `file://` also works.
 
 ## Editing content
 
-- **Text** lives in the HTML. Section headings pair `<span class="idx">01</span>` with an
-  `<h2>`, so renumber if you add or remove a section.
+- **Text** lives in the HTML. If you add or remove a figure on a page, renumber that
+  page's `Obr. 01` … captions by hand; there is no templating and no build step.
 - **Photos** go in `photo/`. Keep them around 1600 px on the long edge and compressed.
   The whole folder is about 1.9 MB.
 - **Sponsors**: add an `<a class="sponsor">` block in `sponzori.html`. Logos sit on a
@@ -75,10 +75,11 @@ datasheet values, readout numbers, and the `Obr. 01` figure numbers. The test is
 value could be read aloud as part of a sentence. If it could, it stays in Montserrat.
 
 **The accent is deliberately narrow.** Mint carries every accent, in two groups. Interaction:
-the primary action, the current-page marker, the focus ring, and the text selection colour.
-Identity: the eyebrow tick, the rule under each section heading, the key-phrase underline,
-the ruler mark, the callout label, and the plate number on a figure. There is no second
-colour. Adding one is what made an earlier version read as decorated rather than designed.
+the primary action, the current-page marker, the focus ring, the hovered sponsor frame, and
+the text selection colour. Identity: the eyebrow tick, the rule under each section heading,
+the key-phrase underline, the callout label, and the plate number on a figure. There is no
+second colour. Adding one is what made an earlier version read as decorated rather than
+designed.
 
 **Direction follows the instrumentation lane.** The owner asked for the site to feel like
 Teenage Engineering or Nothing, so the page is built as a datasheet for a real workshop:
@@ -93,8 +94,13 @@ licensed typefaces) is recorded in `DESIGN.md`.
 > prose values are the intended ones, update the three tokens and re-tint
 > `assets/favicon.svg`.
 
-The section divider is `.rule-ticks`, a measurement rule drawn entirely in CSS. It replaced
-a hex-nut chain that repeated the logo too literally; that SVG is gone.
+The section divider is `.rule-ticks`, a measurement rule drawn entirely in CSS: a hairline
+with drawn ticks and nothing else. It replaced a hex-nut chain that repeated the logo too
+literally, and the mint mark it carried was removed because it read as a stray coloured bar
+under whatever sat above it.
+
+`assets/favicon.svg` is the logo glyph itself, in mint on a transparent background, so it
+reads on both light and dark browser chrome.
 
 `assets/` holds only what is referenced: `logo-svetle.svg` and `favicon.svg`. The other
 brand logo variants (all-white, and the dark version for light backgrounds) are not used by
@@ -104,7 +110,8 @@ history if you need them.
 ## Where the photographs came from
 
 The workshop's own photo archive was provided: 232 images, reviewed one by one as labelled
-contact sheets. Twenty were selected and are committed to `photo/` as optimised WebP.
+contact sheets. Nineteen are committed to `photo/` as optimised WebP; the two that stopped
+being used were deleted rather than left orphaned (they are in git history).
 
 They were chosen for one reason: the first build had no real assets, and that was why it
 read as bland and corporate. Real students at real benches, the orange Gypri whistles the

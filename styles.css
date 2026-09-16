@@ -62,6 +62,9 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  /* Grows only on very large displays, where a 16px root leaves the composition
+     floating in the middle of the screen. Below ~1880px this resolves to 16px. */
+  font-size: clamp(16px, 0.85vw, 18.5px);
 }
 
 body {
@@ -69,7 +72,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -128,10 +131,14 @@ h1 { font-weight: 900; }
 h2 { font-size: clamp(1.6rem, 3.4vw, 2.75rem); }
 h3 { font-size: clamp(1.05rem, 1.9vw, 1.4rem); letter-spacing: 0.005em; }
 
+/* Prose keeps a readable measure even when the container widens on a large
+   display. Everything that is not prose (grids, media, the datasheet) still
+   uses the full width. */
 p {
   margin: 0 0 1.15rem;
   color: var(--body);
   font-weight: 300;
+  max-width: 76ch;
 }
 
 p:last-child { margin-bottom: 0; }
@@ -205,10 +212,7 @@ p:last-child { margin-bottom: 0; }
 .brand-mark {
   width: 34px;
   height: 34px;
-  transition: transform 0.5s var(--ease);
 }
-
-.brand:hover .brand-mark { transform: rotate(-90deg); }
 
 .brand-word {
   font-weight: 800;
@@ -538,7 +542,8 @@ figure:hover .fig-num { color: var(--mint); }
   border: 1px solid var(--border);
   filter: grayscale(1);
   opacity: 0.78;
-  transition: filter 0.35s var(--ease), opacity 0.35s var(--ease);
+  transition: filter 0.35s var(--ease), opacity 0.35s var(--ease),
+    border-color 0.35s var(--ease);
 }
 
 .sponsor img {
@@ -547,13 +552,21 @@ figure:hover .fig-num { color: var(--mint); }
   width: auto;
   height: auto;
   object-fit: contain;
+  transition: transform 0.35s var(--ease);
 }
 
 .sponsor:hover,
 .sponsor:focus-visible {
   filter: grayscale(0);
   opacity: 1;
+  border-color: var(--mint);
 }
+
+/* The logo answers the cursor: it comes up to full colour, the frame turns
+   mint, and the mark itself lifts a little. Transform only, so nothing in the
+   grid reflows. */
+.sponsor:hover img,
+.sponsor:focus-visible img { transform: scale(1.05); }
 
 /* ----------------------------------------------------------- timeline -- */
 
@@ -678,6 +691,14 @@ figure:hover .fig-num { color: var(--mint); }
 
 /* --------------------------------------------------------- responsive -- */
 
+/* Large displays. A 1360px column on a 2560px screen left the whole composition
+   floating between two dead margins, so above 1600px the container widens and
+   (via the root font-size) the type grows with it. Prose keeps its 76ch
+   measure; grids, media and the datasheet use the full width. */
+@media (min-width: 1600px) {
+  :root { --maxw: 1720px; }
+}
+
 @media (max-width: 1080px) {
   .timeline { grid-template-columns: repeat(2, 1fr); row-gap: 1.75rem; }
 }
@@ -696,7 +717,9 @@ figure:hover .fig-num { color: var(--mint); }
     align-items: flex-start;
     gap: 0;
     padding: 0 var(--gutter);
-    background: rgba(8, 9, 12, 0.97);
+    /* Opaque on purpose. At 97% the hero behind the panel ghosted through the
+       open menu, which is what the "glitch" in the top bar was. */
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
     max-height: 0;
     overflow: hidden;
@@ -712,6 +735,23 @@ figure:hover .fig-num { color: var(--mint); }
     font-size: 0.75rem;
   }
 
+  /* The links arrive one after another instead of as a slab. Transform and
+     opacity only, and JS-gated, so a script failure leaves them visible. */
+  .js .nav a {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease),
+      color 0.25s var(--ease);
+  }
+
+  .js .nav.is-open a { opacity: 1; transform: none; }
+
+  .js .nav.is-open a:nth-child(1) { transition-delay: 0.04s; }
+  .js .nav.is-open a:nth-child(2) { transition-delay: 0.08s; }
+  .js .nav.is-open a:nth-child(3) { transition-delay: 0.12s; }
+  .js .nav.is-open a:nth-child(4) { transition-delay: 0.16s; }
+  .js .nav.is-open a:nth-child(5) { transition-delay: 0.2s; }
+
   .nav a:last-child { border-bottom: 0; }
 
   .nav a[aria-current='page']::after { display: none; }
@@ -720,8 +760,6 @@ figure:hover .fig-num { color: var(--mint); }
   .split,
   .split--wide-left,
   .grid--2,
-
-
   .timeline { grid-template-columns: 1fr; row-gap: 1.25rem; }
   .footer-main { grid-template-columns: 1fr; gap: 2rem; }
 
@@ -803,17 +841,15 @@ figure:hover .fig-num { color: var(--mint); }
   text-underline-offset: 0.2em;
 }
 
-/* ------------------------------------------------------- wordmark spin --
-   The logo mark turns a quarter on hover. The one moving part in the chrome. */
-
-.brand-mark { transition: transform 0.7s var(--ease); }
-.brand:hover .brand-mark { transform: rotate(90deg); }
-
 /* -------------------------------------------------------- tick divider --
-   A measurement rule: a drawn ruler with one mint mark. The ticks are a small
+   A measurement rule: a drawn ruler separating sections. The ticks are a small
    inline SVG rather than a repeating gradient, because the ruler is the whole
    point (a bench is ruled and measured) and a gradient stripe is the generic
-   version of this. It is the site's identity motif. */
+   version of this. It is the site's identity motif.
+
+   There is no mint mark on it. There was one, and it read as a stray coloured
+   bar under whatever sat above it rather than as a measured mark. The divider
+   is a hairline and its ticks, nothing else. */
 
 .rule-ticks {
   position: relative;
@@ -825,7 +861,7 @@ figure:hover .fig-num { color: var(--mint); }
   background-size: 14px 9px;
 }
 
-/* the one measured mark, sitting on the hairline */
+/* the hairline the ticks sit on */
 .rule-ticks::before {
   content: '';
   position: absolute;
@@ -834,16 +870,6 @@ figure:hover .fig-num { color: var(--mint); }
   top: 2px;
   height: 1px;
   background: var(--border);
-}
-
-.rule-ticks::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 2.5rem;
-  height: 7px;
-  background: var(--mint);
 }
 
 /* --------------------------------------------------------- callout box --
@@ -1017,8 +1043,10 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 /* ----------------------------------------------------------- the ledge --
-   What is actually in the room, as objects rather than as services. Large
-   names, a terse factual line, and a real count where a count exists. */
+   What is actually in the room, as objects rather than as services. A large
+   name and a terse factual line. The counts live in the names, where they read
+   as sentences ("Sedm tiskáren"), rather than repeated as a mono figure beside
+   them. */
 
 .ledge {
   list-style: none;
@@ -1029,8 +1057,8 @@ figure:hover .fig-num { color: var(--mint); }
 
 .ledge > li {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.35rem 2rem;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
   align-items: baseline;
   border-bottom: 1px solid var(--border);
   padding: clamp(1.05rem, 2.4vw, 1.6rem) 0;
@@ -1052,17 +1080,6 @@ figure:hover .fig-num { color: var(--mint); }
   max-width: 64ch;
 }
 
-.ledge-qty {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  font-family: var(--mono);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
 /* --------------------------------------------------------- statement --
    A large spoken line, set in sentence case rather than the uppercase the
    headings use, so it reads as someone telling you something. Sits at the
@@ -1082,21 +1099,13 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 @media (max-width: 560px) {
-  .ledge > li {
-    grid-template-columns: 1fr;
-    gap: 0.3rem;
-  }
-
-  .ledge-qty {
-    grid-column: 1;
-    grid-row: auto;
-    margin-top: 0.35rem;
-  }
+  .ledge > li { gap: 0.3rem; }
 }
 
 /* --------------------------------------------------------------- motion --
-   MOTION 2: reveals, hairline hover, the logo turn. Nothing runs on its own,
-   and everything stops under prefers-reduced-motion. */
+   MOTION 2: reveals, hairline hover, the plate number turning mint, the sponsor
+   logo answering the cursor. Nothing runs on its own, and everything stops
+   under prefers-reduced-motion. */
 
 @media (max-width: 860px) {
   .offset-top { margin-top: 0; }
