@@ -160,7 +160,9 @@ not have fixed it.
 
 Two things changed:
 
-1. **Real photographs.** 232 images of the actual workshop were reviewed; 20 were selected.
+1. **Real photographs.** 232 images of the actual workshop were reviewed; 20 were selected,
+   of which 19 remain in `photo/` after later passes deleted the ones that stopped being
+   used.
    Real students at real benches replaced pictograms, and the orange Gypri whistles the
    workshop actually prints became a centrepiece instead of a sentence in a list.
 2. **A whisker of play.** Rules that draw themselves in, a logo that turned on hover, one
@@ -315,21 +317,23 @@ the CSS honest at three breakpoints without inventing steps nothing uses.
 - **Radius**: `0`, everywhere. A machined panel has no radius and a rounded one reads as
   software chrome. This was `2px`; it became a deliberate zero after the reference study.
 - **Easing**: `cubic-bezier(.2,.7,.3,1)`, the only curve
-- **Breakpoints**: `1080px` (grids collapse), `860px` (nav collapses to the toggle),
-  `560px` (datasheet rows stack), `520px` (single column)
+- **Breakpoints**: `1600px` (container widens and the root font-size starts to grow),
+  `1080px` (grids collapse), `860px` (nav collapses to the toggle), `560px` (datasheet rows
+  stack), `520px` (single column)
 
 ## 5. Component Patterns
 
 The components, and no more. Anything new should reuse one of these or justify itself here.
 The dead-CSS check in the build verification fails if a component is declared with no markup
-using it, so this list and the stylesheet cannot drift apart.
+using it, so this list and the stylesheet cannot drift apart in that direction. It does not
+catch the other direction, a name listed here that the stylesheet never defines, which is
+how `.panel` and `.card` sat in this list long after they stopped existing. Keep the list to
+what is actually in `styles.css`.
 
 The system, shared by every page:
 
 - **Buttons**: `.btn` is an outline; `.btn--primary` is filled mint with near-black text.
-  Both are sentence case, never pill-shaped, radius 0.
-- **Panels**: `.panel`, a hairline box for genuinely parallel items of equal weight.
-- **Cards**: `.card`, a link-shaped panel with a title and a one-line description.
+  Both are short uppercase labels, not sentences, and are never pill-shaped, radius 0.
 - **Media**: `.media`, a bordered well holding a photograph. `--tall` is 3:4, default 16:10.
   Photographs sit square and never zoom; the frame hairline answers the cursor instead.
 - **Figure caption**: `.media-caption` with a `.fig-num` plate number, set in mono. Hovering
@@ -388,8 +392,11 @@ Photographs come from the workshop's own library: the old WordPress site and the
 `gypridilna-app-2.0` repository. No stock photography, no AI illustration, no hotlinking.
 
 - Everything lives in `photo/` and is committed. A page must render from the repo alone.
-- Long edge at most 1600px, WebP at quality 76 to 80. The folder totals about 1.9 MB.
-- Always `loading="lazy"` and `decoding="async"`, except the ~1 KB logo SVG.
+- Long edge at most 1600px, WebP at quality 76 to 80. The arrival plate is the one
+  exception, at 2000px, because it spans the full column and is the largest thing on the
+  page. The folder totals about 3.5 MB.
+- Always `loading="lazy"` and `decoding="async"`, except the ~1 KB logo SVG and the arrival
+  plate, which sits above the fold and is the one image that must not wait.
 - Sponsor logos sit on a Cloud Paper card, because most are dark artwork that would
   disappear on the dark background. This is the one place the site goes light.
 - Decorative images take `alt=""`; meaningful ones get a real description in Czech.

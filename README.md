@@ -52,7 +52,7 @@ Opening `index.html` directly over `file://` also works.
 - **Text** lives in the HTML. If you add or remove a figure on a page, renumber that
   page's `Obr. 01` … captions by hand; there is no templating and no build step.
 - **Photos** go in `photo/`. Keep them around 1600 px on the long edge and compressed.
-  The whole folder is about 1.9 MB.
+  The whole folder is about 3.5 MB.
 - **Sponsors**: add an `<a class="sponsor">` block in `sponzori.html`. Logos sit on a
   Cloud Paper card because most sponsor logos are dark artwork that would disappear on
   the dark background.
