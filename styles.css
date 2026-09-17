@@ -777,60 +777,13 @@ figure:hover .fig-num { color: var(--mint); }
 
   /* Mobile hero photo backdrop for .threshold */
   .threshold {
-    position: relative !important;
-    overflow: hidden !important;
-  }
-
-  .threshold .wrap,
-  .threshold-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .threshold .split {
-    position: static !important;
+    background-image: linear-gradient(to bottom, rgba(8, 9, 12, 0.75), rgba(8, 9, 12, 0.94)), url('photo/dilna-hlavni.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .threshold-figure {
-    position: absolute !important;
-    top: -15px !important;
-    left: -15px !important;
-    right: -15px !important;
-    bottom: -15px !important;
-    width: calc(100% + 30px) !important;
-    height: calc(100% + 30px) !important;
-    z-index: 1 !important;
-    margin: 0 !important;
-    pointer-events: none;
-  }
-
-  .threshold-figure::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(8, 9, 12, 0.65), rgba(8, 9, 12, 0.92));
-    z-index: 2;
-  }
-
-  .threshold-figure .media {
-    width: 100% !important;
-    height: 100% !important;
-    aspect-ratio: auto !important;
-    border: none !important;
-    border-radius: 0 !important;
-    background: transparent !important;
-  }
-
-  .threshold-figure img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    filter: blur(8px) brightness(0.35) !important;
-    opacity: 0.55 !important;
-    transform: scale(1.08) !important;
-  }
-
-  .threshold-figure .media-caption {
     display: none !important;
   }
 }
