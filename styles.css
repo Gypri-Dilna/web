@@ -774,6 +774,37 @@ figure:hover .fig-num { color: var(--mint); }
   }
 
   .hud-tick { display: none; }
+
+  /* Mobile hero photo backdrop for .threshold */
+  .threshold {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .threshold-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .threshold-figure {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    margin: 0 !important;
+    opacity: 0.22;
+    pointer-events: none;
+  }
+
+  .threshold-figure .media {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    border: none;
+  }
+
+  .threshold-figure .media-caption {
+    display: none;
+  }
 }
 
 @media (max-width: 520px) {
