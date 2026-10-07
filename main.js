@@ -39,6 +39,154 @@
     });
   }
 
+  /* ------------------------------------------------ image lightbox -- */
+
+  function initLightbox() {
+    var mediaImgs = Array.prototype.slice.call(document.querySelectorAll('.media img'));
+    if (!mediaImgs.length) return;
+
+    var lightboxEl = null;
+    var lightboxImg = null;
+    var lightboxCaption = null;
+    var lightboxCounter = null;
+    var prevBtn = null;
+    var nextBtn = null;
+    var currentIndex = 0;
+    var lastFocusedEl = null;
+
+    function buildLightboxDOM() {
+      lightboxEl = document.createElement('div');
+      lightboxEl.className = 'lightbox';
+      lightboxEl.setAttribute('role', 'dialog');
+      lightboxEl.setAttribute('aria-modal', 'true');
+      lightboxEl.setAttribute('aria-label', 'Detail obrázku');
+      lightboxEl.setAttribute('aria-hidden', 'true');
+
+      lightboxEl.innerHTML =
+        '<div class="lightbox-backdrop"></div>' +
+        '<div class="lightbox-dialog">' +
+          '<button class="lightbox-close" aria-label="Zavřít detail (Esc)">' +
+            '<span aria-hidden="true">&times;</span>' +
+            '<span>Zavřít</span>' +
+          '</button>' +
+          '<button class="lightbox-nav lightbox-prev" aria-label="Předchozí obrázek (šipka vlevo)">&lsaquo;</button>' +
+          '<button class="lightbox-nav lightbox-next" aria-label="Následující obrázek (šipka vpravo)">&rsaquo;</button>' +
+          '<figure class="lightbox-figure">' +
+            '<img class="lightbox-img" src="" alt="">' +
+            '<figcaption class="lightbox-caption"></figcaption>' +
+          '</figure>' +
+          '<div class="lightbox-counter"></div>' +
+        '</div>';
+
+      document.body.appendChild(lightboxEl);
+
+      lightboxImg = lightboxEl.querySelector('.lightbox-img');
+      lightboxCaption = lightboxEl.querySelector('.lightbox-caption');
+      lightboxCounter = lightboxEl.querySelector('.lightbox-counter');
+      prevBtn = lightboxEl.querySelector('.lightbox-prev');
+      nextBtn = lightboxEl.querySelector('.lightbox-next');
+
+      var closeBtn = lightboxEl.querySelector('.lightbox-close');
+      var backdrop = lightboxEl.querySelector('.lightbox-backdrop');
+
+      closeBtn.addEventListener('click', closeLightbox);
+      backdrop.addEventListener('click', closeLightbox);
+
+      prevBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        showImage((currentIndex - 1 + mediaImgs.length) % mediaImgs.length);
+      });
+
+      nextBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        showImage((currentIndex + 1) % mediaImgs.length);
+      });
+
+      window.addEventListener('keydown', function (e) {
+        if (!lightboxEl.classList.contains('is-open')) return;
+
+        if (e.key === 'Escape') {
+          closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+          showImage((currentIndex - 1 + mediaImgs.length) % mediaImgs.length);
+        } else if (e.key === 'ArrowRight') {
+          showImage((currentIndex + 1) % mediaImgs.length);
+        }
+      });
+    }
+
+    function getCaptionForImg(img) {
+      var figure = img.closest('figure');
+      if (figure) {
+        var captionEl = figure.querySelector('.media-caption');
+        if (captionEl) return captionEl.innerHTML;
+      }
+      return img.alt ? img.alt : '';
+    }
+
+    function showImage(index) {
+      currentIndex = index;
+      var img = mediaImgs[index];
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt || 'Detail obrázku';
+
+      var captionHTML = getCaptionForImg(img);
+      lightboxCaption.innerHTML = captionHTML;
+
+      if (mediaImgs.length > 1) {
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + mediaImgs.length;
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+      } else {
+        lightboxCounter.textContent = '';
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+      }
+    }
+
+    function openLightbox(index) {
+      if (!lightboxEl) buildLightboxDOM();
+      lastFocusedEl = document.activeElement;
+      showImage(index);
+      lightboxEl.classList.add('is-open');
+      lightboxEl.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      var closeBtn = lightboxEl.querySelector('.lightbox-close');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeLightbox() {
+      if (!lightboxEl) return;
+      lightboxEl.classList.remove('is-open');
+      lightboxEl.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+        lastFocusedEl.focus();
+      }
+    }
+
+    mediaImgs.forEach(function (img, index) {
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      var altText = img.alt ? ': ' + img.alt : '';
+      img.setAttribute('aria-label', 'Zvětšit obrázek' + altText);
+
+      img.addEventListener('click', function () {
+        openLightbox(index);
+      });
+
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(index);
+        }
+      });
+    });
+  }
+
+  initLightbox();
+
   /* -------------------------------------- reveals and section rules --
      Adds .is-visible when an element scrolls into view. .reveal fades and lifts;
      .section-head uses the same hook to draw its mint rule in. */
@@ -73,3 +221,4 @@
     observer.observe(el);
   });
 })();
+
