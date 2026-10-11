@@ -238,7 +238,7 @@ Three brand colours plus neutrals. Nothing else is added.
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| Accent | Circuit Mint | `#3aa398` | The only accent. Primary action, current-page marker, focus ring, text selection, the eyebrow tick, the rule under a section heading, the key-phrase underline, the sponsor frame on hover, and the callout label. |
+| Accent | Circuit Mint | `#3aa398` | The only accent. Primary action, current-page marker, focus ring, text selection, the eyebrow tick, the rule under a section heading, the bold mint emphasis, the sponsor frame on hover, and the callout label. |
 | Accent (hover) | Mint Bright | `#5cc9bd` | Hover state of the primary action. |
 | Text | Cloud Paper | `#fafdff` | Headings, and the background of sponsor cards. |
 | Text (body) | Body Grey | `#c3c8d2` | Paragraphs. 14.2:1 on the page background. |
@@ -254,7 +254,7 @@ darkened, because the brand value is too light to sit under a photograph.
 **The accent budget: one colour.** Only one of the three brand colours is chromatic, so
 Circuit Mint carries every accent: interaction (primary action, focus, current page, the
 hovered sponsor frame) and identity (the eyebrow tick, the rule under each section heading,
-the key-phrase underline, the callout label). There is no second accent.
+the bold mint emphasis, the callout label). There is no second accent.
 
 **A wrong turn, recorded.** A later pass added a second accent, Whistle Orange `#ff6b35`,
 reasoning that the workshop's orange products made it brand evidence. That was wrong twice
@@ -338,7 +338,9 @@ The system, shared by every page:
   Photographs sit square and never zoom; the frame hairline answers the cursor instead.
 - **Figure caption**: `.media-caption` with a `.fig-num` plate number, set in mono. Hovering
   the frame turns the number mint. Every photograph on the site is a numbered figure.
-- **Callout**: `.callout`, a heightened surface for a single call to action.
+- **Callout**: `.callout`, a single top divider and whitespace for a call to action.
+- **Inline emphasis**: `<strong class="emphasis">`, bold mint text that wraps naturally.
+  No boxes, tinted backgrounds, or underlines on non-link phrases.
 - **Timeline**: `.timeline`, a four-up row of dated phases, used once on CanSat.
 - **Spec sheet**: `.specs`, the datasheet. A `<dl>` of `.specs-row`, each row a
   `.specs-label` (`<dt>`) with a `.specs-val` and `.specs-note` (`<dd>`) stacked beside it,
@@ -397,8 +399,10 @@ Photographs come from the workshop's own library: the old WordPress site and the
   page. The folder totals about 3.5 MB.
 - Always `loading="lazy"` and `decoding="async"`, except the ~1 KB logo SVG and the arrival
   plate, which sits above the fold and is the one image that must not wait.
-- Sponsor logos sit on a Cloud Paper card, because most are dark artwork that would
-  disappear on the dark background. This is the one place the site goes light.
+- Sponsor logos sit on uniform 3:2 Cloud Paper cards. Each image fits inside the same
+  padding with `object-fit: contain`, preserving its proportions without cropping. Image
+  dimensions cannot stretch the grid rows. Dark artwork stays visible on the light card.
+  This is the one place the site goes light.
 - Decorative images take `alt=""`; meaningful ones get a real description in Czech.
 - **Every photograph is a numbered figure.** Its caption opens with `.fig-num` (`Obr. 01`),
   numbered per page from 01. Photographs sit square: no rotation, no zoom on hover. The
