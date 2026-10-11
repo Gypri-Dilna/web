@@ -7,7 +7,7 @@
      Graphite Core #2f353e · Circuit Mint #3aa398 · Cloud Paper #fafdff
    Circuit Mint is the only accent. It carries the primary action, the current
    page marker, focus, text selection, and the identity motif (the tick, the
-   rule under a section heading, the underline, the ruler mark).
+   rule under a section heading, bold emphasis, the ruler mark).
 
    The lane is instrumentation: the page is a datasheet for a workshop, so
    measured values are set in a monospace face and photographs are numbered
@@ -537,13 +537,12 @@ figure:hover .fig-num { color: var(--mint); }
   gap: 1rem;
 }
 
-/* Cloud Paper background is required: most sponsor logos are dark artwork. */
+/* Keep intrinsic logo dimensions out of grid sizing so every tile stays 3:2.
+   Cloud Paper is required: most sponsor logos are dark artwork. */
 .sponsor {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  display: block;
   aspect-ratio: 3 / 2;
-  padding: 1.5rem;
   background: var(--paper);
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -554,10 +553,11 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 .sponsor img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
   object-fit: contain;
   transition: transform 0.35s var(--ease);
 }
@@ -847,17 +847,12 @@ figure:hover .fig-num { color: var(--mint); }
 .js .section-head.is-visible::after { transform: scaleX(1); }
 
 /* --------------------------------------------------------- key phrase --
-   A mint underline on a key phrase, like a ruler line under a drawing's title.
-   Built from text-decoration, not a coloured bar behind the words, for two
-   reasons: a bar behind text lowers the contrast of the glyphs sitting on it,
-   and it cannot wrap. An underline draws below the baseline, so it never
-   touches text contrast, and it breaks across lines like normal text. */
+   Weight and mint emphasize prose without a box or a link-like underline.
+   Keep it inline so longer phrases wrap naturally on narrow screens. */
 
-.mark {
-  text-decoration: underline;
-  text-decoration-color: var(--mint);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.2em;
+.emphasis {
+  color: var(--mint);
+  font-weight: 700;
 }
 
 /* -------------------------------------------------------- tick divider --
@@ -891,15 +886,12 @@ figure:hover .fig-num { color: var(--mint); }
   background: var(--border);
 }
 
-/* --------------------------------------------------------- callout box --
-   A raised surface for a single call to action. Deliberately neutral: a surface
-   is not an accent moment, so it is a hairline and a faint wash, not a colour. */
+/* ------------------------------------------------------------- callout --
+   A single divider and whitespace separate an invitation from body copy. */
 
 .callout {
-  border: 1px solid var(--border-strong);
-  background: rgba(250, 253, 255, 0.04);
-  border-radius: var(--radius);
-  padding: clamp(1.4rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--border-strong);
+  padding-top: clamp(1.4rem, 3vw, 2.25rem);
 }
 
 .label-accent {
@@ -940,21 +932,6 @@ figure:hover .fig-num { color: var(--mint); }
    symmetric two-column template. */
 
 .offset-top { margin-top: -2.5rem; }
-
-/* --------------------------------------------------------- mint tag --
-   A quiet label inside prose. Outlined rather than filled, so it reads as a tag
-   and cannot be mistaken for a button. Mint on the page background is 6.52:1. */
-
-.chip {
-  display: inline-block;
-  padding: 0.15em 0.5em;
-  border: 1px solid rgba(58, 163, 152, 0.45);
-  background: rgba(58, 163, 152, 0.12);
-  color: var(--mint);
-  font-weight: 700;
-  border-radius: var(--radius);
-  line-height: 1.4;
-}
 
 /* ------------------------------------------------------------- reveals --
    Opt-in: content is only hidden once JS has confirmed it is running, so a JS

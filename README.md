@@ -54,8 +54,8 @@ Opening `index.html` directly over `file://` also works.
 - **Photos** go in `photo/`. Keep them around 1600 px on the long edge and compressed.
   The whole folder is about 3.5 MB.
 - **Sponsors**: add an `<a class="sponsor">` block in `sponzori.html`. Logos sit on a
-  Cloud Paper card because most sponsor logos are dark artwork that would disappear on
-  the dark background.
+  uniform 3:2 Cloud Paper card, with contained logos that keep their original proportions,
+  because most sponsor logos are dark artwork that would disappear on the dark background.
 - **Mark the current page** with `aria-current="page"` on the matching nav link. One per
   page; it drives the underline.
 
@@ -77,7 +77,7 @@ value could be read aloud as part of a sentence. If it could, it stays in Montse
 **The accent is deliberately narrow.** Mint carries every accent, in two groups. Interaction:
 the primary action, the current-page marker, the focus ring, the hovered sponsor frame, and
 the text selection colour. Identity: the eyebrow tick, the rule under each section heading,
-the key-phrase underline, the callout label, and the plate number on a figure. There is no
+the bold mint emphasis, the callout label, and the plate number on a figure. There is no
 second colour. Adding one is what made an earlier version read as decorated rather than
 designed.
 
@@ -127,8 +127,8 @@ give it a real Czech `alt`. Decorative images take `alt=""`.
 - The mobile nav is keyboard reachable and closes on `Esc`.
 - There is no animated background: motion is hover and focus only.
 - Two size floors: functional labels never below 11px, descriptive prose never below 12px.
-- Every text/surface pair in `styles.css` passes WCAG AA. Muted grey on the callout
-  background is the tightest at 5.15:1.
+- Every text/surface pair in `styles.css` passes WCAG AA. Callouts use the page
+  background; inline emphasis uses bold Circuit Mint.
 
 ## Tooling
 
@@ -151,8 +151,8 @@ reproducible rather than hand-waved.
 
 **`cramped-padding` is a false positive.** The detector resolves `clamp()` for font-size
 but not for padding, so clamp-based padding reads as zero. Measured in a browser: `.section`
-has `padding-top: 101.12px` with a 102px real gap to its first child, and `.callout` has
-36px on every side. Nothing is flush. Worth reporting to the impeccable repo.
+has `padding-top: 101.12px` with a 102px real gap to its first child. Callouts now
+use only top padding beneath a divider, with their text aligned to the content rail. Worth reporting to the impeccable repo.
 
 **`layout-transition` is measured as harmless.** The mobile nav animates `max-height`, and
 the nav is `position: fixed`, so it is out of normal flow. Toggling it open and closed left
