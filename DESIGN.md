@@ -338,6 +338,10 @@ The system, shared by every page:
   Photographs sit square and never zoom; the frame hairline answers the cursor instead.
 - **Figure caption**: `.media-caption` with a `.fig-num` plate number, set in mono. Hovering
   the frame turns the number mint. Every photograph on the site is a numbered figure.
+- **Workshop team**: `.team-grid`, four named portraits on desktop, two columns below
+  860px and one below 520px. Reuses the 3:4 media frame and caption. Until real portraits
+  are supplied, `.team-placeholder` displays “Fotografii doplníme”; placeholders are plain
+  text, not broken images or lightbox targets. Names come from the current workshop roster.
 - **Callout**: `.callout`, a single top divider and whitespace for a call to action.
 - **Inline emphasis**: `<strong class="emphasis">`, bold mint text that wraps naturally.
   No boxes, tinted backgrounds, or underlines on non-link phrases.
