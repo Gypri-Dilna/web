@@ -548,16 +548,29 @@ figure:hover .fig-num { color: var(--mint); }
   font-size: 1.15rem;
   font-weight: 700;
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.45rem;
   margin-top: 0.75rem;
+  white-space: nowrap;
+}
+
+.team-name {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.team-sep {
+  color: var(--muted);
+  font-weight: 300;
+  opacity: 0.6;
 }
 
 .team-role {
   font-family: var(--mono);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -572,6 +585,7 @@ figure:hover .fig-num { color: var(--mint); }
 
 .team-role--mentor {
   color: var(--mint);
+  font-weight: 400;
 }
 
 /* ----------------------------------------------------------- sponsors -- */
@@ -1148,14 +1162,26 @@ figure:hover .fig-num { color: var(--mint); }
    logo answering the cursor. Nothing runs on its own, and everything stops
    under prefers-reduced-motion. */
 
-@media (max-width: 1024px) {
-  .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
 @media (max-width: 860px) {
-  .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .offset-top { margin-top: 0; }
   .photo-strip { grid-template-columns: 1fr 1fr; }
+
+  .team-grid {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.25rem;
+    padding-bottom: 1rem;
+    margin-right: calc(-1 * var(--gutter));
+    padding-right: var(--gutter);
+  }
+
+  .team-grid figure {
+    flex: 0 0 clamp(200px, 48vw, 260px);
+    scroll-snap-align: start;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1179,8 +1205,11 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 @media (max-width: 520px) {
-  .team-grid,
   .photo-strip { grid-template-columns: 1fr; }
+
+  .team-grid figure {
+    flex: 0 0 clamp(190px, 62vw, 240px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
