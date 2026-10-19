@@ -537,10 +537,16 @@ figure:hover .fig-num { color: var(--mint); }
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   gap: 1.5rem;
   padding-bottom: 1.25rem;
   margin-right: calc(-1 * var(--gutter));
   padding-right: var(--gutter);
+}
+
+.team-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .team-grid figure {
