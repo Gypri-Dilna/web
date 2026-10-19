@@ -532,14 +532,23 @@ figure:hover .fig-num { color: var(--mint); }
 /* ------------------------------------------------------- workshop team -- */
 
 .team-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   gap: 1.5rem;
+  padding-bottom: 1.25rem;
+  margin-right: calc(-1 * var(--gutter));
+  padding-right: var(--gutter);
 }
 
 .team-grid figure {
   margin: 0;
   display: flex;
   flex-direction: column;
+  flex: 0 0 clamp(230px, 22vw, 300px);
+  scroll-snap-align: start;
 }
 
 .team-grid .media-caption {
@@ -561,9 +570,8 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 .team-sep {
-  color: var(--muted);
-  font-weight: 300;
-  opacity: 0.6;
+  color: var(--mint);
+  font-weight: 700;
 }
 
 .team-role {
@@ -1166,21 +1174,8 @@ figure:hover .fig-num { color: var(--mint); }
   .offset-top { margin-top: 0; }
   .photo-strip { grid-template-columns: 1fr 1fr; }
 
-  .team-grid {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1.25rem;
-    padding-bottom: 1rem;
-    margin-right: calc(-1 * var(--gutter));
-    padding-right: var(--gutter);
-  }
-
   .team-grid figure {
     flex: 0 0 clamp(200px, 48vw, 260px);
-    scroll-snap-align: start;
   }
 }
 
