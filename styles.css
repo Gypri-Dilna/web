@@ -40,7 +40,7 @@
     'Liberation Mono', monospace;
 
   /* metrics */
-  --bar-h: 74px;
+  --bar-h: 4.625rem;
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --maxw: 1360px;
 
@@ -61,10 +61,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--bar-h) + 1rem);
   -webkit-text-size-adjust: 100%;
   /* Grows only on very large displays, where a 16px root leaves the composition
      floating in the middle of the screen. Below ~1880px this resolves to 16px. */
-  font-size: clamp(16px, 0.85vw, 18.5px);
+  font-size: clamp(100%, 0.85vw, 115.625%);
 }
 
 body {
@@ -122,14 +123,15 @@ h3,
 h4 {
   font-weight: 800;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
   line-height: 0.96;
   letter-spacing: -0.015em;
   margin: 0;
 }
 
 h1 { font-weight: 900; }
-h2 { font-size: clamp(1.6rem, 3.4vw, 2.75rem); }
-h3 { font-size: clamp(1.05rem, 1.9vw, 1.4rem); letter-spacing: 0.005em; }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.75rem); line-height: 1.12; }
+h3 { font-size: clamp(1.05rem, 1.9vw, 1.4rem); line-height: 1.15; letter-spacing: 0.005em; }
 
 /* Prose keeps a readable measure even when the container widens on a large
    display. Everything that is not prose (grids, media, the datasheet) still
@@ -139,6 +141,7 @@ p {
   color: var(--body);
   font-weight: 300;
   max-width: 76ch;
+  text-wrap: pretty;
 }
 
 p:last-child { margin-bottom: 0; }
@@ -229,6 +232,9 @@ p:last-child { margin-bottom: 0; }
 }
 
 .nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   position: relative;
   font-size: 0.6875rem;
   font-weight: 600;
@@ -339,6 +345,7 @@ main {
 /* -------------------------------------------------------------- buttons -- */
 
 .btn {
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -535,7 +542,7 @@ figure:hover .fig-num { color: var(--mint); }
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -786,10 +793,10 @@ figure:hover .fig-num { color: var(--mint); }
   .timeline { grid-template-columns: repeat(2, 1fr); row-gap: 1.75rem; }
 }
 
-@media (max-width: 860px) {
-  :root { --bar-h: 66px; }
+@media (max-width: 53.75em) {
+  :root { --bar-h: 4.125rem; }
 
-  .nav-toggle { display: block; }
+  .js .nav-toggle { display: block; }
 
   .nav {
     position: fixed;
@@ -804,12 +811,18 @@ figure:hover .fig-num { color: var(--mint); }
        open menu, which is what the "glitch" in the top bar was. */
     background: var(--bg);
     border-bottom: 1px solid var(--border);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s var(--ease);
+    max-height: min(70dvh, calc(100dvh - var(--bar-h)));
+    overflow-y: auto;
   }
 
-  .nav.is-open { max-height: 70vh; }
+  .js .nav {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0.2s;
+  }
+
+  .js .nav.is-open { visibility: visible; opacity: 1; transform: none; }
 
   .nav a {
     width: 100%;
@@ -817,23 +830,6 @@ figure:hover .fig-num { color: var(--mint); }
     border-bottom: 1px solid var(--border);
     font-size: 0.75rem;
   }
-
-  /* The links arrive one after another instead of as a slab. Transform and
-     opacity only, and JS-gated, so a script failure leaves them visible. */
-  .js .nav a {
-    opacity: 0;
-    transform: translateY(-6px);
-    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease),
-      color 0.25s var(--ease);
-  }
-
-  .js .nav.is-open a { opacity: 1; transform: none; }
-
-  .js .nav.is-open a:nth-child(1) { transition-delay: 0.04s; }
-  .js .nav.is-open a:nth-child(2) { transition-delay: 0.08s; }
-  .js .nav.is-open a:nth-child(3) { transition-delay: 0.12s; }
-  .js .nav.is-open a:nth-child(4) { transition-delay: 0.16s; }
-  .js .nav.is-open a:nth-child(5) { transition-delay: 0.2s; }
 
   .nav a:last-child { border-bottom: 0; }
 
@@ -1015,8 +1011,8 @@ figure:hover .fig-num { color: var(--mint); }
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transform: translateY(12px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
 }
 
 .js .reveal.is-visible {
@@ -1179,7 +1175,7 @@ figure:hover .fig-num { color: var(--mint); }
    logo answering the cursor. Nothing runs on its own, and everything stops
    under prefers-reduced-motion. */
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .offset-top { margin-top: 0; }
   .photo-strip { grid-template-columns: 1fr 1fr; }
 
@@ -1222,6 +1218,7 @@ figure:hover .fig-num { color: var(--mint); }
   *,
   *::before,
   *::after {
+    transition-delay: 0s !important;
     transition-duration: 0.001ms !important;
   }
 
@@ -1234,6 +1231,7 @@ figure:hover .fig-num { color: var(--mint); }
   }
 
   .js .section-head::after { transform: scaleX(1); transition: none; }
+  .js .nav { transform: none; }
 }
 
 /* ----------------------------------------------------------- lightbox -- */
@@ -1242,20 +1240,32 @@ figure:hover .fig-num { color: var(--mint); }
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
   opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.25s var(--ease), visibility 0.25s var(--ease);
+  transition: opacity 0.2s var(--ease), display 0.2s allow-discrete,
+    overlay 0.2s allow-discrete;
 }
 
-.lightbox.is-open {
+.lightbox[open] {
+  display: flex;
   opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+}
+
+.lightbox::backdrop { background: transparent; }
+
+@starting-style {
+  .lightbox[open] { opacity: 0; }
 }
 
 .lightbox-backdrop {
@@ -1269,15 +1279,18 @@ figure:hover .fig-num { color: var(--mint); }
 .lightbox-dialog {
   position: relative;
   z-index: 101;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  gap: 0.75rem;
   align-items: center;
-  max-width: 90vw;
-  max-height: 90vh;
+  width: min(100%, 70rem);
   margin: auto;
 }
 
 .lightbox-figure {
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -1287,7 +1300,7 @@ figure:hover .fig-num { color: var(--mint); }
 
 .lightbox-img {
   max-width: 100%;
-  max-height: clamp(300px, 72vh, 800px);
+  max-height: min(72dvh, calc(100dvh - 12rem), 800px);
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1297,6 +1310,8 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 .lightbox-caption {
+  max-height: 4.5em;
+  overflow-y: auto;
   margin-top: 0.85rem;
   font-family: var(--mono);
   font-size: 0.8125rem;
@@ -1312,9 +1327,10 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 .lightbox-close {
-  position: absolute;
-  top: -2.75rem;
-  right: 0;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  justify-self: end;
+  min-height: 44px;
   background: var(--surface);
   border: 1px solid var(--border-strong);
   color: var(--text);
@@ -1337,9 +1353,7 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 .lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  grid-row: 2;
   background: var(--surface);
   border: 1px solid var(--border-strong);
   color: var(--text);
@@ -1356,8 +1370,8 @@ figure:hover .fig-num { color: var(--mint); }
   z-index: 102;
 }
 
-.lightbox-prev { left: -3.5rem; }
-.lightbox-next { right: -3.5rem; }
+.lightbox-prev { grid-column: 1; }
+.lightbox-next { grid-column: 3; }
 
 .lightbox-nav:hover,
 .lightbox-nav:focus-visible {
@@ -1366,7 +1380,9 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 .lightbox-counter {
-  margin-top: 0.5rem;
+  grid-column: 1 / -1;
+  grid-row: 3;
+  text-align: center;
   font-family: var(--mono);
   font-size: 0.75rem;
   color: var(--muted);
@@ -1374,9 +1390,38 @@ figure:hover .fig-num { color: var(--mint); }
 }
 
 @media (max-width: 768px) {
-  .lightbox-prev { left: 0; top: auto; bottom: -3.2rem; transform: none; }
-  .lightbox-next { right: 0; top: auto; bottom: -3.2rem; transform: none; }
-  .lightbox-close { top: -2.5rem; right: 0; }
-  .lightbox-dialog { max-width: 95vw; }
+  .lightbox-figure { grid-column: 1 / -1; }
+  .lightbox-nav { grid-row: 3; }
+  .lightbox-counter { grid-column: 2; }
+}
+
+/* Press feedback starts immediately, including on touch, without moving targets. */
+.btn,
+.nav-toggle,
+.lightbox-close,
+.lightbox-nav,
+.media img[role='button'] { touch-action: manipulation; }
+
+.btn:active,
+.nav-toggle:active,
+.lightbox-close:active,
+.lightbox-nav:active {
+  background: var(--border-strong);
+  transition: none;
+}
+
+.btn--primary:active { background: var(--mint-bright); }
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .topbar,
+  .lightbox-backdrop {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root { --border: var(--muted); --border-strong: var(--text); }
 }
 

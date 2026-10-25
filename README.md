@@ -19,7 +19,7 @@ cansat.html         CanSat
 sponzori.html       Sponzoři
 kontakt.html        Kontakt
 styles.css          the entire design system
-main.js             mobile navigation only (no dependencies)
+main.js             navigation, photo dialog and reveals (no dependencies)
 DESIGN.md           direction, dials, and the reason for each major decision
 assets/             the two files the site references: logo, favicon
 photo/              photographs and sponsor logos (all local, pre-optimised)
@@ -34,8 +34,8 @@ templating and no build step.
      path: if the page count passes roughly ten, generate the pages from one template. -->
 
 `AGENTS.md` is the ponytail ruleset (lazy-senior-dev code minimalism). It is the
-instruction-only install: one file, no plugin, no hooks, no dependency. Two deliberate
-ceilings are marked with `ponytail:` comments, here and in `main.js`.
+instruction-only install: one file, no plugin, no hooks, no dependency. The deliberate
+ceiling for duplicated page chrome is marked with a `ponytail:` comment above.
 
 ## Preview locally
 
@@ -124,8 +124,14 @@ give it a real Czech `alt`. Decorative images take `alt=""`.
 
 - `prefers-reduced-motion: reduce` removes all transitions.
 - Focus rings are visible (`:focus-visible`, brand mint).
-- The mobile nav is keyboard reachable and closes on `Esc`.
-- There is no animated background: motion is hover and focus only.
+- The closed mobile nav is inert; opening it makes its links keyboard reachable.
+  `Esc` closes it and restores focus. The menu stays scrollable on short screens.
+- Photos open in a native modal `<dialog>`: background content is inert, `Esc` closes
+  the viewer, and focus returns to the source photo. All viewer controls are at least 44px.
+- Reduced transparency or increased contrast makes the top bar and photo backdrop solid.
+- Type and header spacing scale with the browser's default text size.
+- There is no animated background. Reveals last 400ms without stagger delays; press
+  feedback is immediate, and the menu uses only opacity/transform transitions.
 - Two size floors: functional labels never below 11px, descriptive prose never below 12px.
 - Every text/surface pair in `styles.css` passes WCAG AA. Callouts use the page
   background; inline emphasis uses bold Circuit Mint.
@@ -141,24 +147,26 @@ checks, never something the site loads at runtime.
 | [impeccable](https://github.com/pbakaus/impeccable) | 61 deterministic design detectors. No LLM, no API key. | `npx impeccable detect .` |
 | [design-guard](https://github.com/FReptar0/design-guard) | Anti-slop lint for HTML against `DESIGN.md`, plus a design-system scorer. | `npx design-guard lint .` |
 
-Current state: **impeccable 0 findings**, **design-guard 5/5 pages at 100/100**,
-`DESIGN.md` 85/100.
+Current design-guard state: **5/5 pages at 100/100**, `DESIGN.md` 85/100.
+The live impeccable scan reports the existing `kicker-above-heading` finding for
+“Kroužek probíhá”, which is retained as the club status label. The interaction
+review adds no new findings; `text-wrap: pretty` resolves the paragraph straggler advisory.
 
-### The two waived detector rules
+### The waived detector rule
 
-Both are recorded in `.impeccable/config.json` with their reasons, so a clean run is
-reproducible rather than hand-waved.
+The padding waiver is recorded in `.impeccable/config.json`.
 
 **`cramped-padding` is a false positive.** The detector resolves `clamp()` for font-size
 but not for padding, so clamp-based padding reads as zero. Measured in a browser: `.section`
 has `padding-top: 101.12px` with a 102px real gap to its first child. Callouts now
 use only top padding beneath a divider, with their text aligned to the content rail. Worth reporting to the impeccable repo.
 
-**`layout-transition` is measured as harmless.** The mobile nav animates `max-height`, and
-the nav is `position: fixed`, so it is out of normal flow. Toggling it open and closed left
-`scrollHeight` (6895), `main` height (6186) and the first section's position identical at
-390px. The suggested alternative, `grid-template-rows`, needs a wrapper element added to
-all five pages for no measured gain.
+### Interaction check
+
+Serve the repo with any static server, then open `/checks/interactions.html` in a
+browser. It reports pass/fail for mobile menu focus and resizing, interrupted menu
+changes, modal focus containment, photo navigation, closing and rapid reopening.
+It uses the actual homepage in an iframe and needs no test dependency.
 
 ### What we do not use from design-guard
 

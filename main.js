@@ -1,13 +1,5 @@
-/* Gypri dílna navigation and scroll reveals.
-   No dependencies. Direction and dials live in DESIGN.md.
-
-   ponytail: JS-gated disclosure. With JS off, the collapsed mobile nav cannot
-   open, so a small-screen visitor has no way to navigate. Ceiling accepted
-   because the alternatives were worse: native <details> needs CSS that fights
-   the UA stylesheet to stay open on desktop, and the checkbox hack needs a
-   <label> plus :checked plumbing for the same result. Upgrade path: if no-JS
-   mobile traffic ever matters, drop the collapse below 860px and let the links
-   wrap, which needs no script at all. */
+/* Gypri dílna navigation, native photo dialog and scroll reveals.
+   No dependencies. Direction and dials live in DESIGN.md. */
 (function () {
   'use strict';
 
@@ -17,11 +9,16 @@
   var nav = document.getElementById('nav');
 
   if (toggle && nav) {
+    var mobileNav = window.matchMedia('(max-width: 53.75em)');
     var setNav = function (open) {
       nav.classList.toggle('is-open', open);
+      nav.inert = mobileNav.matches && !open;
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu');
     };
+
+    setNav(false);
+    mobileNav.addEventListener('change', function () { setNav(false); });
 
     toggle.addEventListener('click', function () {
       setNav(!nav.classList.contains('is-open'));
@@ -55,12 +52,9 @@
     var lastFocusedEl = null;
 
     function buildLightboxDOM() {
-      lightboxEl = document.createElement('div');
+      lightboxEl = document.createElement('dialog');
       lightboxEl.className = 'lightbox';
-      lightboxEl.setAttribute('role', 'dialog');
-      lightboxEl.setAttribute('aria-modal', 'true');
       lightboxEl.setAttribute('aria-label', 'Detail obrázku');
-      lightboxEl.setAttribute('aria-hidden', 'true');
 
       lightboxEl.innerHTML =
         '<div class="lightbox-backdrop"></div>' +
@@ -72,15 +66,16 @@
           '<button class="lightbox-nav lightbox-prev" aria-label="Předchozí obrázek (šipka vlevo)">&lsaquo;</button>' +
           '<button class="lightbox-nav lightbox-next" aria-label="Následující obrázek (šipka vpravo)">&rsaquo;</button>' +
           '<figure class="lightbox-figure">' +
-            '<img class="lightbox-img" src="" alt="">' +
             '<figcaption class="lightbox-caption"></figcaption>' +
           '</figure>' +
-          '<div class="lightbox-counter"></div>' +
+          '<div class="lightbox-counter" aria-live="polite"></div>' +
         '</div>';
 
       document.body.appendChild(lightboxEl);
 
-      lightboxImg = lightboxEl.querySelector('.lightbox-img');
+      lightboxImg = new Image();
+      lightboxImg.className = 'lightbox-img';
+      lightboxEl.querySelector('.lightbox-figure').prepend(lightboxImg);
       lightboxCaption = lightboxEl.querySelector('.lightbox-caption');
       lightboxCounter = lightboxEl.querySelector('.lightbox-counter');
       prevBtn = lightboxEl.querySelector('.lightbox-prev');
@@ -91,6 +86,10 @@
 
       closeBtn.addEventListener('click', closeLightbox);
       backdrop.addEventListener('click', closeLightbox);
+      lightboxEl.addEventListener('cancel', function (event) {
+        event.preventDefault();
+        closeLightbox();
+      });
 
       prevBtn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -102,14 +101,14 @@
         showImage((currentIndex + 1) % mediaImgs.length);
       });
 
-      window.addEventListener('keydown', function (e) {
-        if (!lightboxEl.classList.contains('is-open')) return;
+      lightboxEl.addEventListener('keydown', function (e) {
+        if (!lightboxEl.open) return;
 
-        if (e.key === 'Escape') {
-          closeLightbox();
-        } else if (e.key === 'ArrowLeft') {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
           showImage((currentIndex - 1 + mediaImgs.length) % mediaImgs.length);
         } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
           showImage((currentIndex + 1) % mediaImgs.length);
         }
       });
@@ -146,10 +145,9 @@
 
     function openLightbox(index) {
       if (!lightboxEl) buildLightboxDOM();
-      lastFocusedEl = document.activeElement;
+      lastFocusedEl = mediaImgs[index];
       showImage(index);
-      lightboxEl.classList.add('is-open');
-      lightboxEl.setAttribute('aria-hidden', 'false');
+      lightboxEl.showModal();
       document.body.style.overflow = 'hidden';
 
       var closeBtn = lightboxEl.querySelector('.lightbox-close');
@@ -158,11 +156,10 @@
 
     function closeLightbox() {
       if (!lightboxEl) return;
-      lightboxEl.classList.remove('is-open');
-      lightboxEl.setAttribute('aria-hidden', 'true');
+      lightboxEl.close();
       document.body.style.overflow = '';
       if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
-        lastFocusedEl.focus();
+        lastFocusedEl.focus({ preventScroll: true });
       }
     }
 
@@ -212,12 +209,6 @@
   );
 
   Array.prototype.forEach.call(watched, function (el) {
-    // stagger siblings so a row of items arrives as a row, not one slab
-    if (el.classList.contains('reveal')) {
-      var siblings = el.parentNode ? el.parentNode.children : [];
-      var index = Array.prototype.indexOf.call(siblings, el);
-      if (index > 0) el.style.transitionDelay = Math.min(index, 4) * 70 + 'ms';
-    }
     observer.observe(el);
   });
 })();

@@ -149,7 +149,7 @@ does not re-adopt it as a reference.
 |---|---|---|
 | **ENERGY** | 3 (Bold) | A workshop full of teenagers building things, not a consultancy. Display type is large, the page title carries the page, and photographs of real students do the work. The energy is now in scale and precision rather than in decoration. |
 | **RHYTHM** | 3 (Varied, asymmetric) | Sections deliberately do not share one composition: a full-bleed hero, a lead-plus-rows feature block, a readout band, a datasheet, a numbered figure strip. |
-| **MOTION** | 2 (Balanced) | Scroll-triggered reveals, a section rule that draws itself in, a hairline that answers the cursor, a plate number that turns mint, a sponsor logo that lifts and comes up to colour, and a mobile menu whose links arrive one after another. Nothing runs on its own, and all of it is off under `prefers-reduced-motion`. |
+| **MOTION** | 2 (Balanced) | Scroll-triggered reveals, a section rule that draws itself in, a hairline that answers the cursor, a plate number that turns mint, a sponsor logo that lifts and comes up to colour, and a mobile menu that appears as one short transition. Nothing runs on its own, and all of it is off under `prefers-reduced-motion`. |
 
 ### Why the dials went up
 
@@ -286,8 +286,8 @@ in Montserrat. If it is a reading off an instrument, it goes in mono.
 | Element | Size | Treatment |
 |---------|------|-----------|
 | Page title | `clamp(2.6rem, 9.5vw, 7.5rem)` | 900, leading 0.88, Montserrat |
-| H2 (section) | `clamp(1.6rem, 3.4vw, 2.75rem)` | 800, leading 0.96, Montserrat |
-| H3 | `clamp(1.05rem, 1.9vw, 1.4rem)` | 800, leading 0.96, Montserrat |
+| H2 (section) | `clamp(1.6rem, 3.4vw, 2.75rem)` | 800, leading 1.12, Montserrat |
+| H3 | `clamp(1.05rem, 1.9vw, 1.4rem)` | 800, leading 1.15, Montserrat |
 | Contact row | `clamp(1.4rem, 5vw, 3.75rem)` | 900, leading 1.3, Montserrat |
 | Lead paragraph | `clamp(1rem, 1.45vw, 1.2rem)` | 300, leading 1.75, Montserrat |
 | Body | `1rem` | 300, leading 1.75, Montserrat |
@@ -313,7 +313,7 @@ the CSS honest at three breakpoints without inventing steps nothing uses.
   begins to grow so the type scales with the wider column
 - **Section vertical padding**: `clamp(3.5rem, 8vw, 7rem)`
 - **Grid gap**: `1.25rem` between parallel items
-- **Top bar height**: `74px`, `66px` on mobile
+- **Top bar height**: `4.625rem`, `4.125rem` on mobile; scales with user text size
 - **Radius**: `0`, everywhere. A machined panel has no radius and a rounded one reads as
   software chrome. This was `2px`; it became a deliberate zero after the reference study.
 - **Easing**: `cubic-bezier(.2,.7,.3,1)`, the only curve
@@ -338,10 +338,12 @@ The system, shared by every page:
   Photographs sit square and never zoom; the frame hairline answers the cursor instead.
 - **Figure caption**: `.media-caption` with a `.fig-num` plate number, set in mono. Hovering
   the frame turns the number mint. Every photograph on the site is a numbered figure.
-- **Workshop team**: `.team-grid`, four named portraits on desktop, two columns below
-  860px and one below 520px. Reuses the 3:4 media frame and caption. Until real portraits
-  are supplied, `.team-placeholder` displays “Fotografii doplníme”; placeholders are plain
-  text, not broken images or lightbox targets. Names come from the current workshop roster.
+- **Workshop team**: `.team-grid`, a native horizontal portrait strip with proximity
+  snapping. Real 3:4 portraits show Caly as mentor and Max, Ondra, Kuba and Filip as
+  the workshop team. Native scrolling supplies touch momentum and stays interruptible.
+- **Photo viewer**: native modal `<dialog>` provides background inertness and focus
+  containment. Controls stay in a grid inside the viewport, including in landscape.
+  A brief opacity transition preserves context; no zoom or spring is needed for a photo.
 - **Callout**: `.callout`, a single top divider and whitespace for a call to action.
 - **Inline emphasis**: `<strong class="emphasis">`, bold mint text that wraps naturally.
   No boxes, tinted backgrounds, or underlines on non-link phrases.
@@ -449,3 +451,18 @@ Guardrails earned during the build. The audit trail is in `anti-slop/`.
 - Don't invent an opening time, a statistic, or a testimonial, and don't put an invented
   number in a datasheet. A row with no note beats a padded one.
 - Don't hotlink an image.
+
+## Interaction review: Apple Design
+
+Applied [Emil Kowalski's Apple Design skill](https://github.com/emilkowalski/skills/blob/main/skills/apple-design/SKILL.md)
+for response, predictability, accessibility and restraint. The workshop palette,
+Montserrat and square geometry remain the identity. Native scrolling and a native
+modal dialog provide platform behavior without a motion library.
+
+- Press feedback starts immediately on `:active`; controls have at least 44px targets.
+- Menu and content reveals have no stagger delay. Menu movement is opacity/transform
+  only, and a new toggle can reverse it immediately. Hidden menu links are inert.
+- Reduced motion removes travel and transition delays. Reduced transparency and higher
+  contrast use solid chrome; higher contrast also strengthens borders.
+- The root text size respects the browser default; header height uses rem units.
+  Section headings have more leading so wrapped Czech text stays readable.
