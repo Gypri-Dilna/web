@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Browser checks for workshop navigation and photo dialog interactions.">
+<title>Workshop interaction checks</title>
+<main>
+<h1>Workshop interaction checks</h1>
+<pre id="result">Running…</pre>
+<iframe title="Website under test" width="390" height="844"></iframe>
+</main>
+<script type="module">
+const result = document.querySelector('#result');
+const frame = document.querySelector('iframe');
+const checks = [];
+function check(condition, message) {
+  if (!condition) throw new Error(message);
+  checks.push('PASS ' + message);
+}
+const nextFrame = () => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+try {
+  const loaded = new Promise(resolve => frame.addEventListener('load', resolve, { once: true }));
+  frame.src = '../index.html';
+  await loaded;
+  const doc = frame.contentDocument;
+  const nav = doc.querySelector('#nav');
+  const toggle = doc.querySelector('#navToggle');
+  check(nav.inert, 'Closed mobile menu is inert');
+  toggle.focus();
+  nav.querySelector('a').focus();
+  check(doc.activeElement === toggle, 'Closed menu links cannot receive focus');
+  toggle.click();
+  check(!nav.inert && toggle.getAttribute('aria-expanded') === 'true', 'Menu opens immediately');
+  nav.querySelector('a').focus();
+  frame.contentWindow.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+  check(nav.inert && doc.activeElement === toggle, 'Escape closes menu and restores focus');
+  toggle.click();
+  toggle.click();
+  toggle.click();
+  check(!nav.inert, 'Menu can be reversed during a transition');
+  frame.width = '1280';
+  await nextFrame();
+  check(!nav.inert && toggle.getAttribute('aria-expanded') === 'false', 'Desktop resize keeps navigation available');
+  frame.width = '390';
+  await nextFrame();
+  check(nav.inert, 'Returning to mobile closes navigation');
+  const image = [...doc.querySelectorAll('.media img')].find(img => img.getClientRects().length);
+  image.focus();
+  image.click();
+  const dialog = doc.querySelector('.lightbox');
+  check(dialog.matches(':modal'), 'Photo opens as a native modal dialog');
+  check(dialog.contains(doc.activeElement), 'Photo controls receive focus');
+  doc.querySelector('.brand').focus();
+  check(dialog.contains(doc.activeElement), 'Background cannot steal modal focus');
+  const counter = dialog.querySelector('.lightbox-counter');
+  const first = counter.textContent;
+  dialog.querySelector('.lightbox-next').click();
+  check(counter.textContent !== first, 'Next image updates the readout');
+  dialog.querySelector('.lightbox-prev').click();
+  check(counter.textContent === first, 'Previous image returns to the starting photo');
+  dialog.dispatchEvent(new Event('cancel', { cancelable: true }));
+  check(!dialog.open && doc.activeElement === image, 'Escape cancellation restores the source photo focus');
+  check(doc.body.style.overflow === '', 'Closing restores page scrolling');
+  image.click();
+  dialog.querySelector('.lightbox-backdrop').click();
+  image.click();
+  check(dialog.open, 'Photo can reopen during the closing transition');
+  dialog.querySelector('.lightbox-close').click();
+  check(!dialog.open, 'Close control dismisses the photo');
+  const team = doc.querySelector('.team-grid');
+  check(team.tabIndex === 0 && team.getAttribute('role') === 'region', 'Team strip is keyboard reachable and named');
+  const fallback = document.createElement('iframe');
+  fallback.title = 'Website without scripts';
+  fallback.width = '390';
+  fallback.height = '844';
+  fallback.sandbox = 'allow-same-origin';
+  const fallbackLoaded = new Promise(resolve => fallback.addEventListener('load', resolve, { once: true }));
+  fallback.src = '../index.html';
+  document.querySelector('main').append(fallback);
+  await fallbackLoaded;
+  const fallbackDoc = fallback.contentDocument;
+  check(!fallbackDoc.documentElement.classList.contains('js'), 'Enhancement is not enabled when scripts are blocked');
+  check(!fallbackDoc.querySelector('#nav').inert, 'Fallback navigation stays available');
+  const headerBounds = fallbackDoc.querySelector('.topbar').getBoundingClientRect();
+  const contentBounds = fallbackDoc.querySelector('main').getBoundingClientRect();
+  check(contentBounds.top >= headerBounds.bottom, 'Fallback navigation reserves space above content');
+  check(fallback.contentWindow.getComputedStyle(fallbackDoc.querySelector('.reveal')).opacity === '1', 'Fallback content stays visible');
+  result.textContent = checks.join('\n');
+  result.dataset.status = 'passed';
+} catch (error) {
+  result.textContent = checks.concat('FAIL ' + error.message).join('\n');
+  result.dataset.status = 'failed';
+  console.error(error);
+}
+</script>
+</html>
