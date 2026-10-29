@@ -17,7 +17,6 @@
       toggle.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu');
     };
 
-    setNav(false);
     mobileNav.addEventListener('change', function () { setNav(false); });
 
     toggle.addEventListener('click', function () {
@@ -194,6 +193,8 @@
     Array.prototype.forEach.call(watched, function (el) {
       el.classList.add('is-visible');
     });
+    document.documentElement.classList.add('js');
+    if (toggle && nav) setNav(false);
     return;
   }
 
@@ -211,5 +212,9 @@
   Array.prototype.forEach.call(watched, function (el) {
     observer.observe(el);
   });
+
+  // Opt in only after setup succeeds; a missing script leaves content usable.
+  document.documentElement.classList.add('js');
+  if (toggle && nav) setNav(false);
 })();
 

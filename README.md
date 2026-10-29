@@ -58,6 +58,8 @@ Opening `index.html` directly over `file://` also works.
   because most sponsor logos are dark artwork that would disappear on the dark background.
 - **Mark the current page** with `aria-current="page"` on the matching nav link. One per
   page; it drives the underline.
+- **Shared asset versions**: keep the stylesheet and script query versions in sync across
+  all five pages when changing shared behavior, so cached assets cannot mix implementations.
 
 ## Design system
 
@@ -123,13 +125,17 @@ give it a real Czech `alt`. Decorative images take `alt=""`.
 ## Accessibility and behaviour
 
 - `prefers-reduced-motion: reduce` removes all transitions.
-- Focus rings are visible (`:focus-visible`, brand mint).
+- Focus rings are visible (`:focus-visible`, brand mint). Photo rings sit inside the
+  image frame so clipping cannot hide them.
 - The closed mobile nav is inert; opening it makes its links keyboard reachable.
   `Esc` closes it and restores focus. The menu stays scrollable on short screens.
 - Photos open in a native modal `<dialog>`: background content is inert, `Esc` closes
   the viewer, and focus returns to the source photo. All viewer controls are at least 44px.
 - Reduced transparency or increased contrast makes the top bar and photo backdrop solid.
-- Type and header spacing scale with the browser's default text size.
+- Type and header spacing scale with the browser's default text size. Contact handles
+  wrap when enlarged, and team portrait widths scale with their captions.
+- Enhancement is enabled only after script setup succeeds. Without scripts, navigation
+  remains in the document flow and reveal content stays visible.
 - There is no animated background. Reveals last 400ms without stagger delays; press
   feedback is immediate, and the menu uses only opacity/transform transitions.
 - Two size floors: functional labels never below 11px, descriptive prose never below 12px.
@@ -165,7 +171,8 @@ use only top padding beneath a divider, with their text aligned to the content r
 
 Serve the repo with any static server, then open `/checks/interactions.html` in a
 browser. It reports pass/fail for mobile menu focus and resizing, interrupted menu
-changes, modal focus containment, photo navigation, closing and rapid reopening.
+changes, modal focus containment, photo navigation, closing, rapid reopening and the
+script-free navigation/content fallback.
 It uses the actual homepage in an iframe and needs no test dependency.
 
 ### What we do not use from design-guard
@@ -180,9 +187,9 @@ legible to the tool, but the content is this project's own.
 
 1. **Contact details.** `dilna@gypri.cz` and `+420 605 089 399`, both from the kroužek
    flyer. Confirm the phone number is the one you want public.
-2. **Kroužek schedule.** The site says the club meets every 2nd to 3rd Wednesday, at least
-   once a month. That comes from the flyer, which is a dated document, so check it still
-   matches the current school year.
+2. **Kroužek schedule.** The contact page now follows the current homepage: usually
+   twice a month on Wednesdays from 14:00. Confirm any future changes on both pages.
+   The older flyer has a different schedule.
 3. **Door number.** The flyer says door no. 64, next to the art room. Confirm this is
    still correct.
 4. **Photo credits.** All photos came from the old WordPress site and the

@@ -336,6 +336,8 @@ The system, shared by every page:
   Both are short uppercase labels, not sentences, and are never pill-shaped, radius 0.
 - **Media**: `.media`, a bordered well holding a photograph. `--tall` is 3:4, default 16:10.
   Photographs sit square and never zoom; the frame hairline answers the cursor instead.
+  Photo focus rings sit inside the frame. `.media--video` matches the report's 1286:720
+  ratio and uses contained video so footage and the interpreter remain fully visible.
 - **Figure caption**: `.media-caption` with a `.fig-num` plate number, set in mono. Hovering
   the frame turns the number mint. Every photograph on the site is a numbered figure.
 - **Workshop team**: `.team-grid`, a native horizontal portrait strip with proximity
@@ -466,3 +468,10 @@ modal dialog provide platform behavior without a motion library.
   contrast use solid chrome; higher contrast also strengthens borders.
 - The root text size respects the browser default; header height uses rem units.
   Section headings have more leading so wrapped Czech text stays readable.
+
+The October 29 audit also removed the extra trailing paragraph margin from heroes
+without action buttons and restored the shared heading gap on the sponsor page.
+Script enhancement now activates after setup; the fallback menu occupies document
+space instead of covering content. Team cards use rem limits so enlarged names stay
+aligned with equal-width portraits; a short scroll hint and a named focusable region
+make the horizontal strip discoverable.

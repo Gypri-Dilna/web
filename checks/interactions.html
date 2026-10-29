@@ -67,6 +67,24 @@ try {
   check(dialog.open, 'Photo can reopen during the closing transition');
   dialog.querySelector('.lightbox-close').click();
   check(!dialog.open, 'Close control dismisses the photo');
+  const team = doc.querySelector('.team-grid');
+  check(team.tabIndex === 0 && team.getAttribute('role') === 'region', 'Team strip is keyboard reachable and named');
+  const fallback = document.createElement('iframe');
+  fallback.title = 'Website without scripts';
+  fallback.width = '390';
+  fallback.height = '844';
+  fallback.sandbox = 'allow-same-origin';
+  const fallbackLoaded = new Promise(resolve => fallback.addEventListener('load', resolve, { once: true }));
+  fallback.src = '../index.html';
+  document.querySelector('main').append(fallback);
+  await fallbackLoaded;
+  const fallbackDoc = fallback.contentDocument;
+  check(!fallbackDoc.documentElement.classList.contains('js'), 'Enhancement is not enabled when scripts are blocked');
+  check(!fallbackDoc.querySelector('#nav').inert, 'Fallback navigation stays available');
+  const headerBounds = fallbackDoc.querySelector('.topbar').getBoundingClientRect();
+  const contentBounds = fallbackDoc.querySelector('main').getBoundingClientRect();
+  check(contentBounds.top >= headerBounds.bottom, 'Fallback navigation reserves space above content');
+  check(fallback.contentWindow.getComputedStyle(fallbackDoc.querySelector('.reveal')).opacity === '1', 'Fallback content stays visible');
   result.textContent = checks.join('\n');
   result.dataset.status = 'passed';
 } catch (error) {
